@@ -26,7 +26,6 @@
       property="og:description"
       content="Your style, our passion. We bring the barbershop to your doorstep with professional grooming. Book your appointment today!"
     />
-    <!-- Replace 'image1.jpg' with the path to your chosen social sharing image if needed -->
     <meta property="og:image" content="https://thehomebarber.com/image1.jpg" />
     <meta property="og:url" content="https://thehomebarber.com/" />
     <meta property="og:type" content="website" />
@@ -42,6 +41,7 @@
       content="Experience the convenience of professional grooming at your home. Book your mobile barber appointment with thehomebarber today!"
     />
     <meta name="twitter:image" content="https://thehomebarber.com/image1.jpg" />
+
     <style>
       /* Smooth Scrolling */
       html {
@@ -78,6 +78,7 @@
         padding: 0;
         box-sizing: border-box;
       }
+
       body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
@@ -85,9 +86,11 @@
         color: var(--text-color);
         transition: background 0.3s ease, color 0.3s ease;
       }
+
       a {
         text-decoration: none;
       }
+
       .container {
         width: 90%;
         max-width: 1200px;
@@ -104,39 +107,48 @@
         z-index: 1000;
         backdrop-filter: blur(5px);
       }
+
       .header-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
+
       .logo {
         font-size: 1.8em;
         font-weight: bold;
         color: var(--accent-gold);
       }
+
       .desktop-nav {
         display: block;
       }
+
       .desktop-nav .nav-list {
         list-style: none;
         display: flex;
         align-items: center;
       }
+
       .desktop-nav .nav-list li {
         margin-left: 20px;
       }
+
       .desktop-nav .nav-list li a {
         color: var(--header-text);
         transition: color 0.3s ease;
       }
+
       .desktop-nav .nav-list li a:hover {
         color: var(--accent-gold);
       }
+
       .mobile-icons {
         display: none;
         align-items: center;
         gap: 10px;
       }
+
       .hamburger {
         background: none;
         border: none;
@@ -144,13 +156,16 @@
         outline: none;
         color: var(--header-text);
       }
+
       .mobile-nav {
         display: none;
       }
+
       @media (max-width: 768px) {
         .mobile-nav.show {
           display: block;
         }
+
         .mobile-nav .nav-list {
           list-style: none;
           flex-direction: column;
@@ -163,17 +178,21 @@
           right: 0;
           z-index: 10;
         }
+
         .mobile-nav .nav-list li {
           margin: 10px 0;
         }
+
         .mobile-nav .nav-list li a {
           color: var(--header-text);
           transition: color 0.3s ease;
         }
+
         .mobile-nav .nav-list li a:hover {
           color: var(--accent-gold);
         }
       }
+
       .mode-toggle {
         background: none;
         border: none;
@@ -195,6 +214,7 @@
         align-items: center;
         position: relative;
       }
+
       .hero::after {
         content: "";
         position: absolute;
@@ -204,6 +224,7 @@
         height: 100%;
         background: var(--hero-overlay);
       }
+
       .hero-content {
         position: relative;
         z-index: 1;
@@ -212,14 +233,17 @@
         width: 100%;
         padding: 0 20px;
       }
+
       .hero-content h1 {
         font-size: 3em;
         margin-bottom: 20px;
       }
+
       .hero-content p {
         font-size: 1.2em;
         margin-bottom: 20px;
       }
+
       .btn {
         display: inline-block;
         padding: 10px 20px;
@@ -231,25 +255,35 @@
         transition: background 0.3s ease;
         margin: 0 auto;
       }
+
       .btn:hover {
         background: var(--button-hover-bg);
+      }
+
+      /* Make the "Book Now" button larger */
+      #openModal {
+        font-size: 1.25em;
+        padding: 15px 30px;
       }
 
       .services {
         padding: 40px 0;
         background: var(--section-bg);
       }
+
       .services h2 {
         text-align: center;
         margin-bottom: 30px;
         font-size: 2em;
       }
+
       .service-items {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
         justify-content: center;
       }
+
       .service-item {
         background: var(--card-bg);
         padding: 20px;
@@ -259,19 +293,23 @@
         box-shadow: var(--card-shadow);
         transition: transform 0.3s ease;
       }
+
       .service-item:hover {
         transform: translateY(-5px);
       }
+
       .service-item img {
         width: 100%;
         height: auto;
         border-radius: 4px;
       }
+
       .service-item h3 {
         margin-top: 15px;
         margin-bottom: 10px;
         color: var(--button-bg);
       }
+
       .service-item p {
         font-size: 0.9em;
       }
@@ -280,6 +318,7 @@
         padding: 40px 0;
         text-align: center;
       }
+
       .appointment h2 {
         margin-bottom: 20px;
         font-size: 2em;
@@ -291,10 +330,12 @@
         color: white;
         text-align: center;
       }
+
       .contact h2 {
         font-size: 2em;
         margin-bottom: 20px;
       }
+
       .contact p {
         margin-bottom: 10px;
       }
@@ -322,6 +363,7 @@
         align-items: center;
         justify-content: center;
       }
+
       .modal-content {
         background: var(--card-bg);
         padding: 20px;
@@ -331,10 +373,12 @@
         position: relative;
         transition: background 0.3s ease;
       }
+
       .modal-content h2 {
         text-align: center;
         margin-bottom: 20px;
       }
+
       .close {
         position: absolute;
         top: 10px;
@@ -347,11 +391,13 @@
       .form-group {
         margin-bottom: 15px;
       }
+
       .form-group label {
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
       }
+
       .form-group input,
       .form-group select {
         width: 100%;
@@ -366,16 +412,20 @@
         .desktop-nav {
           display: none;
         }
+
         .mobile-icons {
           display: flex;
         }
+
         .hero {
           height: 70vh;
           background-position: center center;
         }
+
         .hero-content h1 {
           font-size: 2em;
         }
+
         .hero-content p {
           font-size: 1em;
         }
@@ -578,23 +628,27 @@
     </div>
 
     <script>
+      // Ensure the modal is hidden on page load
       document.addEventListener("DOMContentLoaded", function () {
         const modal = document.getElementById("modal");
+        modal.style.display = "none";
+
         const openModalBtn = document.getElementById("openModal");
         const closeModalBtn = document.getElementById("closeModal");
 
-        openModalBtn.addEventListener(
-          "click",
-          () => (modal.style.display = "flex")
-        );
-        closeModalBtn.addEventListener(
-          "click",
-          () => (modal.style.display = "none")
-        );
-        window.addEventListener(
-          "click",
-          (e) => e.target === modal && (modal.style.display = "none")
-        );
+        openModalBtn.addEventListener("click", () => {
+          modal.style.display = "flex";
+        });
+
+        closeModalBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
 
         document
           .getElementById("bookingForm")
@@ -603,6 +657,7 @@
             const formData = new FormData(this);
             const details = Object.fromEntries(formData.entries());
 
+            // Validate that all fields are filled in
             if (!Object.values(details).every((value) => value)) {
               alert("Please fill in all fields");
               return;
@@ -617,20 +672,20 @@
 
         const modeToggleBtns = document.querySelectorAll(".mode-toggle");
         const sunIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
-        <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
-        <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
-        <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
-        <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
-      </svg>`;
+          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+          <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+          <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+          <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+          <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
+        </svg>`;
 
         const moonIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2"/>
-      </svg>`;
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2"/>
+        </svg>`;
 
         modeToggleBtns.forEach((btn) => {
           btn.innerHTML = moonIcon;
@@ -645,6 +700,13 @@
         document.getElementById("hamburger").addEventListener("click", () => {
           document.querySelector(".mobile-nav").classList.toggle("show");
         });
+      });
+
+      // Clear any URL hash on page load to prevent unwanted scrolling
+      window.addEventListener("load", () => {
+        if (window.location.hash) {
+          history.replaceState(null, "", window.location.pathname);
+        }
       });
     </script>
   </body>
