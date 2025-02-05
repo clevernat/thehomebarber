@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary Meta Tags -->
+    <title>thehomebarber - Mobile Barber Service</title>
+    <meta
+      name="description"
+      content="Experience the perfect cut at home with thehomebarber – your mobile barber service delivering professional grooming directly to your doorstep. Book your appointment now!"
+    />
+    <meta
+      name="keywords"
+      content="mobile barber, haircut at home, beard styling, shave, grooming, barbershop, thehomebarber"
+    />
+    <meta name="author" content="thehomebarber" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://thehomebarber.com/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="thehomebarber - Mobile Barber Service" />
+    <meta
+      property="og:description"
+      content="Your style, our passion. We bring the barbershop to your doorstep with professional grooming. Book your appointment today!"
+    />
+    <meta
+      property="og:image"
+      content="https://thehomebarber.com/images/bg-image.jpg"
+    />
+    <meta property="og:url" content="https://thehomebarber.com/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="thehomebarber - Mobile Barber Service"
+    />
+    <meta
+      name="twitter:description"
+      content="Experience the convenience of professional grooming at your home. Book your mobile barber appointment with thehomebarber today!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://thehomebarber.com/images/bg-image.jpg"
+    />
+
+    <!-- Google Font: Roboto Slab -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- OpenDyslexic for dyslexic-friendly font -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/open-dyslexic@0.2.0/open-dyslexic.css"
+    />
+
+    <!-- Favicon (save this SVG as favicon.svg in your project folder) -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+    <!-- AOS CSS for scroll animations -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+
+    <!-- Embedded CSS -->
+    <style>
+      /* Skip Navigation Link */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000;
+        color: #fff;
+        padding: 8px 16px;
+        z-index: 10000;
+        transition: top 0.3s ease;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+      /* Accessibility Widget Styles */
+      .accessibility-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--button-bg);
+        border: none;
+        color: #fff;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        z-index: 10000;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .accessibility-btn:focus {
+        outline: 2px solid var(--accent-gold);
+      }
+      .accessibility-panel {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background: var(--bg-color);
+        border: 1px solid #ccc;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        display: none;
+        width: 220px;
+      }
+      .accessibility-panel button {
+        margin: 4px 0;
+        width: 100%;
+        padding: 8px;
+        background: var(--button-bg);
+        border: none;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .accessibility-panel button:hover {
+        background: var(--button-hover-bg);
+      }
+      /* High Contrast and Extra Spacing Classes */
+      body.high-contrast {
+        background: #000;
+        color: #fff;
+      }
+      body.high-contrast header,
+      body.high-contrast footer {
+        background: #000;
+        color: #fff;
+      }
+      body.extra-spacing {
+        letter-spacing: 0.1em;
+        line-height: 1.8;
+      }
+      body.dyslexic {
+        font-family: "OpenDyslexic", sans-serif !important;
+      }
+      /* Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Color Scheme Variables */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #2d2d2d;
+        --header-bg: rgba(25, 25, 25, 0.95);
+        --header-text: #ffffff;
+        --button-bg: #8b0000;
+        --button-hover-bg: #6b0000;
+        --card-bg: #f8f8f8;
+        --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        --section-bg: #f1f1f1;
+        --form-bg: #ffffff;
+        --hero-overlay: rgba(0, 0, 0, 0.7);
+        --accent-gold: #c5a880;
+      }
+      body.dark-mode {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --header-bg: rgba(18, 18, 18, 0.95);
+        --card-bg: #1e1e1e;
+        --section-bg: #181818;
+        --form-bg: #242424;
+      }
+      /* Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto Slab", serif;
+        line-height: 1.6;
+        background: var(--bg-color);
+        color: var(--text-color);
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+      input,
+      select,
+      button {
+        font-family: inherit;
+      }
+      a {
+        text-decoration: none;
+      }
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      header {
+        background: var(--header-bg);
+        color: var(--header-text);
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+      }
+      .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: var(--accent-gold);
+      }
+      nav {
+      }
+      .desktop-nav {
+        display: block;
+      }
+      .desktop-nav .nav-list {
+        list-style: none;
+        display: flex;
+        align-items: center;
+      }
+      .desktop-nav .nav-list li {
+        margin-left: 20px;
+      }
+      .desktop-nav .nav-list li a {
+        color: var(--header-text);
+        transition: color 0.3s ease;
+      }
+      .desktop-nav .nav-list li a:hover {
+        color: var(--accent-gold);
+      }
+      .mobile-icons {
+        display: none;
+        align-items: center;
+        gap: 10px;
+      }
+      .hamburger {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: var(--header-text);
+      }
+      .mobile-nav {
+        display: none;
+      }
+      @media (max-width: 1199px) {
+        .mobile-nav.show {
+          display: block;
+        }
+        .mobile-nav .nav-list {
+          list-style: none;
+          flex-direction: column;
+          background: var(--header-bg);
+          text-align: center;
+          padding: 10px 0;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          right: 0;
+          z-index: 10;
+        }
+        .mobile-nav .nav-list li {
+          margin: 10px 0;
+        }
+        .mobile-nav .nav-list li a {
+          color: var(--header-text);
+          transition: color 0.3s ease;
+        }
+        .mobile-nav .nav-list li a:hover {
+          color: var(--accent-gold);
+        }
+        .desktop-nav {
+          display: none;
+        }
+        .mobile-icons {
+          display: flex;
+        }
+        .hero {
+          height: 70vh;
+          background-position: center center;
+        }
+        .hero-content h1 {
+          font-size: 2em;
+        }
+        .hero-content p {
+          font-size: 1em;
+        }
+        .pricing-cards {
+          grid-template-columns: 1fr 1fr !important;
+        }
+      }
+      @media (min-width: 1200px) {
+        .pricing-cards {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+      }
+      .mode-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: var(--header-text);
+        display: flex;
+        align-items: center;
+        padding: 0;
+      }
+      .hero {
+        background: url("https://thehomebarber.com/images/bg-image.jpg")
+          center/cover no-repeat;
+        height: 100vh;
+        margin-top: -80px;
+        padding-top: 80px;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--hero-overlay);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+        text-align: center;
+        width: 100%;
+        padding: 0 20px;
+      }
+      .hero-content h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+      }
+      .hero-content p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: var(--button-bg);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        margin: 0 auto;
+      }
+      .btn:hover {
+        background: var(--button-hover-bg);
+      }
+      #openModal,
+      #scheduleAppointment {
+        font-size: 1.25em;
+        padding: 15px 30px;
+      }
+      .services {
+        padding: 40px 0;
+        background: var(--section-bg);
+      }
+      .services h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2em;
+      }
+      .service-items {
+        display: grid;
+        gap: 20px;
+      }
+      @media (min-width: 768px) {
+        .service-items {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+      }
+      .service-item {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 4px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease;
+      }
+      .service-item:hover {
+        transform: translateY(-5px);
+      }
+      .service-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+      .service-item h3 {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        color: var(--button-bg);
+      }
+      .service-item p {
+        font-size: 0.9em;
+      }
+      .pricing {
+        padding: 40px 0;
+        background: var(--section-bg);
+      }
+      .pricing h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2em;
+      }
+      .pricing-cards {
+        display: grid;
+        gap: 20px;
+        justify-items: center;
+      }
+      .pricing-card {
+        background: var(--card-bg);
+        padding: 20px;
+        width: 100%;
+        max-width: 300px;
+        border-radius: 4px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .pricing-card:hover {
+        transform: translateY(-5px);
+      }
+      .pricing-card .card-icon {
+        margin-bottom: 15px;
+      }
+      .pricing-card h3 {
+        margin-bottom: 10px;
+        color: var(--button-bg);
+      }
+      .pricing-card .price {
+        font-size: 1.5em;
+        margin: 0;
+        color: var(--text-color);
+        font-weight: bold;
+      }
+      .pricing-card .description {
+        font-size: 0.9em;
+        margin-top: 10px;
+        color: var(--text-color);
+      }
+      .appointment {
+        padding: 40px 0;
+        text-align: center;
+      }
+      .appointment h2 {
+        margin-bottom: 20px;
+        font-size: 2em;
+      }
+      .contact {
+        padding: 40px 0;
+        background: var(--button-bg);
+        color: white;
+        text-align: center;
+      }
+      .contact h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+      .contact p {
+        margin-bottom: 10px;
+      }
+      footer {
+        background: var(--header-bg);
+        color: var(--header-text);
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 4px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        transition: background 0.3s ease;
+      }
+      .modal-content h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: var(--bg-color);
+        color: var(--text-color);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Skip to Content Link -->
+    <a href="#mainContent" class="skip-link">Skip to Content</a>
+
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <a href="index.html" class="logo" aria-label="thehomebarber Home"
+          >THB</a
+        >
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#appointment">Appointment</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+              <button
+                class="mode-toggle"
+                aria-label="Toggle dark mode"
+                aria-live="polite"
+              ></button>
+            </li>
+          </ul>
+        </nav>
+        <div class="mobile-icons">
+          <button
+            class="mode-toggle"
+            aria-label="Toggle dark mode"
+            aria-live="polite"
+          ></button>
+          <button
+            id="hamburger"
+            class="hamburger"
+            aria-label="Toggle navigation"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <line
+                x1="3"
+                y1="6"
+                x2="21"
+                y2="6"
+                stroke="currentColor"
+                stroke-width="2"
+              ></line>
+              <line
+                x1="3"
+                y1="12"
+                x2="21"
+                y2="12"
+                stroke="currentColor"
+                stroke-width="2"
+              ></line>
+              <line
+                x1="3"
+                y1="18"
+                x2="21"
+                y2="18"
+                stroke="currentColor"
+                stroke-width="2"
+              ></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <nav class="mobile-nav" aria-label="Mobile Navigation">
+        <ul class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#appointment">Appointment</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+      <!-- Hero Section -->
+      <section id="home" class="hero" aria-labelledby="heroHeading">
+        <div class="container">
+          <div class="hero-content" data-aos="fade-up">
+            <h1 id="heroHeading">Experience the Perfect Cut at Home</h1>
+            <p>
+              Your style, our passion. We bring the barbershop to your doorstep.
+              Book your appointment today!
+            </p>
+            <button id="openModal" class="btn">Book Now</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="services" aria-labelledby="servicesHeading">
+        <div class="container">
+          <h2 id="servicesHeading" data-aos="fade-up">Our Services</h2>
+          <div class="service-items">
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="100">
+              <img src="images/classic.jpg" alt="Classic Haircut" />
+              <h3>Classic Haircut</h3>
+              <p>Timeless style with a modern twist—delivered to your home.</p>
+            </div>
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="200">
+              <img src="images/trim.jpg" alt="Shave &amp; Trim" />
+              <h3>Shave &amp; Trim</h3>
+              <p>Precision grooming for a neat look wherever you are.</p>
+            </div>
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="300">
+              <img src="images/beard.jpg" alt="Beard Styling" />
+              <h3>Beard Styling</h3>
+              <p>
+                Craft your perfect beard style with our experts at your
+                doorstep.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing" class="pricing" aria-labelledby="pricingHeading">
+        <div class="container">
+          <h2 id="pricingHeading" data-aos="fade-up">Pricing</h2>
+          <div class="pricing-cards">
+            <!-- Men's Haircut Card -->
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  fill="currentColor"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M477.9 67.9L444.1 35.1C435.3 26.3 422.7 26.3 413.9 35.1L256 192 98.1 35.1C89.3 26.3 76.7 26.3 67.9 35.1L34.1 67.9C25.3 76.7 25.3 89.3 34.1 98.1L192 256 34.1 413.9C25.3 422.7 25.3 435.3 34.1 444.1L67.9 477.9C76.7 486.7 89.3 486.7 98.1 477.9L256 320 413.9 477.9C422.7 486.7 435.3 486.7 444.1 477.9L477.9 444.1C486.7 435.3 486.7 422.7 477.9 413.9L320 256 477.9 98.1C486.7 89.3 486.7 76.7 477.9 67.9z"
+                  ></path>
+                </svg>
+              </div>
+              <h3>Men's Haircut</h3>
+              <p class="price">$25</p>
+              <p class="description">
+                A clean and classic cut to keep you looking sharp.
+              </p>
+            </div>
+            <!-- Children's Haircut Card -->
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="card-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  fill="currentColor"
+                  viewBox="0 0 448 512"
+                >
+                  <path
+                    d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm0 32c-75 0-224 37.5-224 112v32c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32v-32c0-74.5-149-112-224-112z"
+                  ></path>
+                </svg>
+              </div>
+              <h3>Children's Haircut</h3>
+              <p class="price">$20</p>
+              <p class="description">
+                Playful styles for a fresh and fun look.
+              </p>
+            </div>
+            <!-- Beard Trim Card -->
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="card-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  fill="currentColor"
+                  viewBox="0 0 640 512"
+                >
+                  <path
+                    d="M80 256c0-123.7 100.3-224 224-224 55.3 0 106 21.3 144 56 38-34.7 88.7-56 144-56 123.7 0 224 100.3 224 224 0 55.3-17.8 95.3-46.6 123.4H46.6C17.8 351.3 0 311.3 0 256zm224-96c-53 0-96 43-96 96 0 11.2 1.5 22 4.3 32h187.4c2.8-10 4.3-20.8 4.3-32 0-53-43-96-96-96z"
+                  ></path>
+                </svg>
+              </div>
+              <h3>Beard Trim</h3>
+              <p class="price">$10</p>
+              <p class="description">
+                Shape and refine your beard with expert precision.
+              </p>
+            </div>
+            <!-- Shave Card -->
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="400">
+              <div class="card-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  fill="currentColor"
+                  viewBox="0 0 640 512"
+                >
+                  <path
+                    d="M637.8 58.4l-44.7-44.7c-15.1-15.1-39.5-15.1-54.6 0L360.1 181.1c-20.1-12.6-43.3-19.1-68.1-19.1-70.7 0-128 57.3-128 128 0 24.8 6.5 48 19.1 68.1L9.4 569.8c-15.1 15.1-15.1 39.5 0 54.6l44.7 44.7c15.1 15.1 39.5 15.1 54.6 0l209.2-209.2c19.2 11.6 41.3 18.2 65.5 18.2 70.7 0 128-57.3 128-128 0-24.2-6.6-46.3-18.2-65.5l209.2-209.2c15.1-15.1 15.1-39.5 0-54.6zM255.8 425.9L117.7 287.8l106.2-106.2 138.1 138.1L255.8 425.9z"
+                  ></path>
+                </svg>
+              </div>
+              <h3>Shave</h3>
+              <p class="price">$5</p>
+              <p class="description">
+                Enjoy a smooth, precise shave for a refreshing feel.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Appointment Section -->
+      <section id="appointment" class="appointment" data-aos="fade-up">
+        <div class="container">
+          <h2>Ready for Your New Look at Home?</h2>
+          <button class="btn" id="scheduleAppointment">
+            Schedule Home Appointment
+          </button>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact" data-aos="fade-up">
+        <div class="container">
+          <h2>Contact Us</h2>
+          <p>
+            Have any questions? Give us a call or book your appointment today!
+          </p>
+          <p>Phone: (123) 456-7890</p>
+          <p>Email: thehomebarber542@gmail.com</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          &copy; <span id="footerDate"></span> | thehomebarber | All Rights
+          Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div
+      id="modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-content" data-aos="zoom-in">
+        <span
+          id="closeModal"
+          class="close"
+          aria-label="Close modal"
+          tabindex="0"
+          >&times;</span
+        >
+        <h2 id="modalTitle">Book Your Home Service Appointment</h2>
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Your Phone Number"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              required
+              aria-required="true"
+            />
+            <small>Selected date: <span id="formattedDate"></span></small>
+          </div>
+          <div class="form-group">
+            <label for="time">Time</label>
+            <input
+              type="time"
+              id="time"
+              name="time"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="form-group">
+            <label for="service">Service</label>
+            <select id="service" name="service" required aria-required="true">
+              <option value="">Select a Service</option>
+              <option value="haircut">Classic Haircut</option>
+              <option value="shave">Shave &amp; Trim</option>
+              <option value="beard">Beard Styling</option>
+            </select>
+          </div>
+          <button type="submit" class="btn">Submit Appointment</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Accessibility Widget -->
+    <button
+      id="accessibilityToggle"
+      class="accessibility-btn"
+      aria-label="Accessibility Options"
+    >
+      <!-- Accessibility icon (an accessible universal icon) -->
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="#fff"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm-1 14.93V17a1 1 0 002 0v-.07a7.001 7.001 0 01-2 0zM12 4a8 8 0 018 8 8.003 8.003 0 01-2.243 5.657l-.707-.707A6 6 0 1012 6a5.978 5.978 0 00-2.05.347l-.708-.707A8.003 8.003 0 0112 4z"
+        />
+      </svg>
+    </button>
+    <div
+      id="accessibilityPanel"
+      class="accessibility-panel"
+      aria-label="Accessibility Options Panel"
+    >
+      <button id="increaseFont">Increase Font</button>
+      <button id="decreaseFont">Decrease Font</button>
+      <button id="resetFont">Reset Font</button>
+      <button id="toggleContrast">Toggle High Contrast</button>
+      <button id="toggleDyslexic">Toggle Dyslexic Font</button>
+      <button id="toggleSpacing">Toggle Extra Spacing</button>
+    </div>
+
+    <!-- AOS JS for scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Embedded JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize AOS for scroll animations
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: true,
+        });
+
+        const modal = document.getElementById("modal");
+        const openModalBtn = document.getElementById("openModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const scheduleAppointmentBtn = document.getElementById(
+          "scheduleAppointment"
+        );
+        const modeToggleBtns = document.querySelectorAll(".mode-toggle");
+
+        // Dark mode icons
+        const sunIcon =
+          '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"></circle><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"></line><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"></line><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"></line><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"></line></svg>';
+        const moonIcon =
+          '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2"></path></svg>';
+
+        // Initialize dark mode toggle
+        modeToggleBtns.forEach((btn) => {
+          btn.innerHTML = moonIcon;
+          btn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            btn.innerHTML = document.body.classList.contains("dark-mode")
+              ? sunIcon
+              : moonIcon;
+            const announcement = document.createElement("div");
+            announcement.setAttribute("aria-live", "assertive");
+            announcement.className = "sr-only";
+            announcement.innerText = document.body.classList.contains(
+              "dark-mode"
+            )
+              ? "Dark mode enabled"
+              : "Light mode enabled";
+            document.body.appendChild(announcement);
+            setTimeout(() => announcement.remove(), 2000);
+          });
+        });
+
+        // Modal functionality with focus management
+        function openModal() {
+          modal.style.display = "flex";
+          modal.querySelector(".modal-content").focus();
+        }
+        function closeModal() {
+          modal.style.display = "none";
+          openModalBtn.focus();
+        }
+        openModalBtn.addEventListener("click", openModal);
+        scheduleAppointmentBtn.addEventListener("click", openModal);
+        closeModalBtn.addEventListener("click", closeModal);
+        closeModalBtn.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            closeModal();
+          }
+        });
+        window.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+
+        // Updated function to handle date selection without timezone issues
+        function updateFormattedDate(dateElement, displayElement) {
+          const [year, month, day] = dateElement.value.split("-");
+          const date = new Date(year, month - 1, day);
+          const options = { month: "short", day: "numeric" };
+          displayElement.textContent = date.toLocaleDateString(
+            undefined,
+            options
+          );
+        }
+        const dateInput = document.getElementById("date");
+        const formattedDateSpan = document.getElementById("formattedDate");
+        if (dateInput && formattedDateSpan) {
+          const today = new Date();
+          const yyyy = today.getFullYear();
+          let mm = today.getMonth() + 1;
+          let dd = today.getDate();
+          mm = mm < 10 ? "0" + mm : mm;
+          dd = dd < 10 ? "0" + dd : dd;
+          dateInput.value = `${yyyy}-${mm}-${dd}`;
+          updateFormattedDate(dateInput, formattedDateSpan);
+          dateInput.addEventListener("change", () => {
+            updateFormattedDate(dateInput, formattedDateSpan);
+          });
+        }
+
+        // Footer Date Setup: Display Month (short) and Year in format "Feb 2025"
+        const footerDateSpan = document.getElementById("footerDate");
+        if (footerDateSpan) {
+          const today = new Date();
+          const month = today.toLocaleString("default", { month: "short" });
+          const year = today.getFullYear();
+          footerDateSpan.textContent = `${month} ${year}`;
+        }
+
+        // Accessibility Panel Functionality
+        const accessibilityToggle = document.getElementById(
+          "accessibilityToggle"
+        );
+        const accessibilityPanel =
+          document.getElementById("accessibilityPanel");
+        const increaseFontBtn = document.getElementById("increaseFont");
+        const decreaseFontBtn = document.getElementById("decreaseFont");
+        const resetFontBtn = document.getElementById("resetFont");
+        const toggleContrastBtn = document.getElementById("toggleContrast");
+        const toggleDyslexicBtn = document.getElementById("toggleDyslexic");
+        const toggleSpacingBtn = document.getElementById("toggleSpacing");
+
+        let currentFontSize = 16; // default font size
+
+        accessibilityToggle.addEventListener("click", function () {
+          accessibilityPanel.style.display =
+            accessibilityPanel.style.display === "block" ? "none" : "block";
+        });
+
+        increaseFontBtn.addEventListener("click", function () {
+          currentFontSize += 2;
+          document.documentElement.style.fontSize = currentFontSize + "px";
+        });
+        decreaseFontBtn.addEventListener("click", function () {
+          currentFontSize = Math.max(12, currentFontSize - 2);
+          document.documentElement.style.fontSize = currentFontSize + "px";
+        });
+        resetFontBtn.addEventListener("click", function () {
+          currentFontSize = 16;
+          document.documentElement.style.fontSize = currentFontSize + "px";
+        });
+        toggleContrastBtn.addEventListener("click", function () {
+          document.body.classList.toggle("high-contrast");
+        });
+        toggleDyslexicBtn.addEventListener("click", function () {
+          document.body.classList.toggle("dyslexic");
+        });
+        toggleSpacingBtn.addEventListener("click", function () {
+          document.body.classList.toggle("extra-spacing");
+        });
+
+        // Optional: Uncomment and enhance form submission handling as needed
+        // document.getElementById("bookingForm").addEventListener("submit", function (e) {
+        //   e.preventDefault();
+        //   const formData = new FormData(this);
+        //   const details = Object.fromEntries(formData.entries());
+        //   if (!Object.values(details).every(value => value)) {
+        //     alert("Please fill in all fields");
+        //     return;
+        //   }
+        //   alert(`Appointment booked for ${details.name} on ${details.date} at ${details.time}`);
+        //   this.reset();
+        //   closeModal();
+        // });
+      });
+    </script>
+  </body>
+</html>
