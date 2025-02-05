@@ -1,3 +1,8 @@
+/* Enable smooth scrolling for all in-page links */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Skip Navigation Link */
 .skip-link {
   position: absolute;
