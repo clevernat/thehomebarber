@@ -254,7 +254,7 @@ header {
 
 /* Hero Section */
 .hero {
-  background: url("images/bg-image.jpg") center/cover no-repeat;
+  background: url("/images/bg-image.jpg") center/cover no-repeat;
   height: 100vh;
   margin-top: -80px;
   padding-top: 80px;
