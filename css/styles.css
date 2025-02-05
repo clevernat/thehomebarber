@@ -80,6 +80,11 @@ body.extra-spacing {
   line-height: 1.8;
 }
 
+/* When the dyslexic font is toggled, use the OpenDyslexic font family */
+body.dyslexic {
+  font-family: "OpenDyslexic", sans-serif;
+}
+
 /* Color Scheme Variables */
 :root {
   --bg-color: #ffffff;
@@ -249,7 +254,7 @@ header {
 
 /* Hero Section */
 .hero {
-  background: url("/images/bg-image.jpg") center/cover no-repeat;
+  background: url("images/bg-image.jpg") center/cover no-repeat;
   height: 100vh;
   margin-top: -80px;
   padding-top: 80px;
@@ -428,6 +433,25 @@ footer {
   text-align: center;
   padding: 20px 0;
   margin-top: 40px;
+}
+footer .footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+footer .social-icons {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding-top: 10px;
+  margin: 0;
+}
+footer .social-icons li a {
+  color: var(--header-text);
+  transition: color 0.3s ease;
+}
+footer .social-icons li a:hover {
+  color: var(--accent-gold);
 }
 
 /* Modal */
