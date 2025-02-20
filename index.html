@@ -82,15 +82,21 @@
       #successModal {
         backdrop-filter: blur(5px);
       }
-      /* Slick Carousel custom styling */
+      /* Slick Carousel custom styling - Unblur slides and add some horizontal spacing */
       .center .slick-slide {
-        filter: blur(3px);
-        opacity: 0.5;
+        filter: none;
+        opacity: 1;
         transition: all 0.3s ease;
+        margin: 0 10px;
       }
+      /* Remove any special styling for the centered slide */
       .center .slick-center {
         filter: none;
         opacity: 1;
+      }
+      /* Optional: Remove slick's default padding if needed */
+      .slick-list {
+        margin: 0 -10px;
       }
       /* Style carousel arrows to be black */
       .slick-prev:before,
@@ -153,28 +159,28 @@
           </div>
         </div>
       </div>
-      <!-- Mobile Menu: wrapped in same container -->
+      <!-- Mobile Menu: wrapped in same container and centered -->
       <div id="mobileMenu" class="hidden md:hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-col items-start space-y-4 py-4">
+          <div class="flex flex-col items-center space-y-4 py-4">
             <a
               href="#home"
-              class="block text-left text-gray-700 hover:text-primary"
+              class="block text-center text-gray-700 hover:text-primary"
               >Home</a
             >
             <a
               href="#services"
-              class="block text-left text-gray-700 hover:text-primary"
+              class="block text-center text-gray-700 hover:text-primary"
               >Services</a
             >
             <a
               href="#pricing"
-              class="block text-left text-gray-700 hover:text-primary"
+              class="block text-center text-gray-700 hover:text-primary"
               >Pricing</a
             >
             <a
               href="#contact"
-              class="block text-left text-gray-700 hover:text-primary"
+              class="block text-center text-gray-700 hover:text-primary"
               >Contact</a
             >
             <button
@@ -201,7 +207,7 @@
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <!-- Hero content container with no horizontal padding on mobile -->
         <div
-          class="relative max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 h-full flex items-center"
+          class="relative max-w-7xl mx-auto w-full px-0 lg:px-8 h-full flex items-center"
         >
           <!-- Text: centered on mobile, left aligned on md+ -->
           <div class="max-w-2xl text-white text-center md:text-left">
@@ -212,8 +218,10 @@
               Experience premium barbering services in the comfort of your home.
               Our skilled barbers bring the salon experience to you.
             </p>
-            <!-- Hero Buttons: center on mobile, left aligned on larger screens -->
-            <div class="flex gap-4 justify-around md:justify-start">
+            <!-- Hero Buttons: centered on mobile and inline -->
+            <div
+              class="flex justify-center space-x-2 md:justify-start md:space-x-4"
+            >
               <button
                 onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
                 class="bg-white text-primary px-4 py-2 md:px-6 md:py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap font-semibold"
@@ -348,9 +356,8 @@
               <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span
                   class="bg-primary text-white px-4 py-1 rounded-full text-sm"
+                  >Most Popular</span
                 >
-                  Most Popular
-                </span>
               </div>
               <div class="mb-6">
                 <h3 class="text-xl font-semibold mb-2 text-left">
@@ -507,77 +514,86 @@
                 <h3 class="text-xl font-semibold mb-6 text-center md:text-left">
                   Select Your Service
                 </h3>
-                <!-- 2-by-2 grid on mobile, 1 column on md+ -->
+                <!-- Mobile view: 2x2 grid; Desktop: vertical list -->
                 <div
                   id="serviceList"
-                  class="grid grid-cols-2 gap-4 md:grid-cols-1"
+                  class="grid grid-cols-2 gap-4 md:grid-cols-1 md:space-y-4"
                 >
+                  <!-- Classic Haircut -->
                   <div
-                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300"
+                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Classic Haircut"
                     data-duration="30"
                     data-price="30"
                   >
-                    <div class="flex flex-col items-center">
+                    <!-- Left side: Name + Duration -->
+                    <div>
                       <h4 class="font-semibold">Classic Haircut</h4>
                       <p class="text-sm text-gray-600">30 mins</p>
-                      <div class="flex items-center gap-4 mt-2">
-                        <span class="text-primary font-semibold">$30</span>
-                        <div
-                          class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
-                        ></div>
-                      </div>
+                    </div>
+                    <!-- Right side: Price + Radio -->
+                    <div class="flex items-center gap-3 mt-2 md:mt-0">
+                      <span class="text-primary font-semibold">$30</span>
+                      <div
+                        class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                      ></div>
                     </div>
                   </div>
+
+                  <!-- Children's Cut -->
                   <div
-                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300"
+                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Children's Cut"
                     data-duration="25"
                     data-price="25"
                   >
-                    <div class="flex flex-col items-center">
+                    <div>
                       <h4 class="font-semibold">Children's Cut</h4>
                       <p class="text-sm text-gray-600">25 mins</p>
-                      <div class="flex items-center gap-4 mt-2">
-                        <span class="text-primary font-semibold">$25</span>
-                        <div
-                          class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
-                        ></div>
-                      </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-2 md:mt-0">
+                      <span class="text-primary font-semibold">$25</span>
+                      <div
+                        class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                      ></div>
                     </div>
                   </div>
+
+                  <!-- Beard Trim -->
                   <div
-                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300"
+                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Beard Trim"
                     data-duration="15"
                     data-price="10"
                   >
-                    <div class="flex flex-col items-center">
+                    <div>
                       <h4 class="font-semibold">Beard Trim</h4>
                       <p class="text-sm text-gray-600">15 mins</p>
-                      <div class="flex items-center gap-4 mt-2">
-                        <span class="text-primary font-semibold">$10</span>
-                        <div
-                          class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
-                        ></div>
-                      </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-2 md:mt-0">
+                      <span class="text-primary font-semibold">$10</span>
+                      <div
+                        class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                      ></div>
                     </div>
                   </div>
+
+                  <!-- Clean Shave -->
                   <div
-                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300"
+                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Clean Shave"
                     data-duration="10"
                     data-price="5"
                   >
-                    <div class="flex flex-col items-center">
+                    <div>
                       <h4 class="font-semibold">Clean Shave</h4>
                       <p class="text-sm text-gray-600">10 mins</p>
-                      <div class="flex items-center gap-4 mt-2">
-                        <span class="text-primary font-semibold">$5</span>
-                        <div
-                          class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
-                        ></div>
-                      </div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-2 md:mt-0">
+                      <span class="text-primary font-semibold">$5</span>
+                      <div
+                        class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -1381,31 +1397,18 @@
         });
       });
 
-      // Initialize Slick Carousel for testimonials using the .center class
+      // Initialize Slick Carousel for testimonials without blur and with responsive slides
       $(document).ready(function () {
         $(".center").slick({
-          centerMode: true,
-          centerPadding: "60px",
           slidesToShow: 3,
+          slidesToScroll: 1,
           autoplay: true,
           autoplaySpeed: 3000,
           responsive: [
             {
               breakpoint: 768,
               settings: {
-                arrows: true,
-                centerMode: true,
-                centerPadding: "40px",
-                slidesToShow: 3,
-              },
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                arrows: true,
-                centerMode: true,
-                centerPadding: "40px",
-                slidesToShow: 1,
+                slidesToShow: 2,
               },
             },
           ],
