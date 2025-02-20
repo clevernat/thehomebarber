@@ -2,189 +2,298 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Primary Meta Tags -->
-    <title>thehomebarber - Mobile Barber Service</title>
-    <meta
-      name="description"
-      content="Experience the perfect cut at home with thehomebarber – your mobile barber service delivering professional grooming directly to your doorstep. Book your appointment now!"
-    />
-    <meta
-      name="keywords"
-      content="mobile barber, haircut at home, beard styling, shave, grooming, barbershop, thehomebarber"
-    />
-    <meta name="author" content="thehomebarber" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://thehomebarber.com/" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="thehomebarber - Mobile Barber Service" />
-    <meta
-      property="og:description"
-      content="Your style, our passion. We bring the barbershop to your doorstep with professional grooming. Book your appointment today!"
-    />
-    <meta property="og:image" content="images/bg-image.jpg" />
-    <meta property="og:url" content="https://thehomebarber.com/" />
-    <meta property="og:type" content="website" />
-
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="thehomebarber - Mobile Barber Service"
-    />
-    <meta
-      name="twitter:description"
-      content="Experience the convenience of professional grooming at your home. Book your mobile barber appointment with thehomebarber today!"
-    />
-    <meta name="twitter:image" content="images/bg-image.jpg" />
-
-    <!-- Google Font: Roboto Slab -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile Barber Service</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- OpenDyslexic for dyslexic-friendly font (updated to version 0.3.0) -->
+    <!-- Remixicon -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <!-- Slick Carousel CSS -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/open-dyslexic@0.3.0/open-dyslexic.css"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
     />
-
-    <!-- Favicon -->
-    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
-
-    <!-- AOS CSS for scroll animations -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
     />
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/styles.css" />
+    <!-- jQuery (required by Slick Carousel) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Slick Carousel JS -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E3D59",
+              secondary: "#E8505B",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+      }
+      .testimonial-card:hover {
+        transform: scale(1.02);
+      }
+      .booking-step.active {
+        border-color: #1e3d59;
+      }
+      .booking-step.completed {
+        background-color: #1e3d59;
+        color: white;
+      }
+      /* Modal overlay blur */
+      #confirmationModal,
+      #successModal {
+        backdrop-filter: blur(5px);
+      }
+      /* Slick Carousel custom styling */
+      .center .slick-slide {
+        filter: blur(3px);
+        opacity: 0.5;
+        transition: all 0.3s ease;
+      }
+      .center .slick-center {
+        filter: none;
+        opacity: 1;
+      }
+      /* Style carousel arrows to be black */
+      .slick-prev:before,
+      .slick-next:before {
+        color: black;
+      }
+    </style>
   </head>
-  <body>
-    <!-- Skip to Content Link -->
-    <a href="#mainContent" class="skip-link">Skip to Content</a>
-
-    <!-- Header -->
-    <header>
-      <div class="container header-container">
-        <a href="index.html" class="logo" aria-label="thehomebarber Home"
-          >THB</a
-        >
-        <nav class="desktop-nav" aria-label="Main Navigation">
-          <ul class="nav-list">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#appointment">Appointment</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li>
-              <button
-                class="mode-toggle"
-                aria-label="Toggle dark mode"
-                aria-live="polite"
-              ></button>
-            </li>
-          </ul>
-        </nav>
-        <div class="mobile-icons">
-          <button
-            class="mode-toggle"
-            aria-label="Toggle dark mode"
-            aria-live="polite"
-          ></button>
-          <button
-            id="hamburger"
-            class="hamburger"
-            aria-label="Toggle navigation"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden="true"
+  <body class="bg-white font-['Inter']">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-white shadow-sm z-50">
+      <!-- Main container for header -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo on the left -->
+          <div class="flex items-center">
+            <a href="#home" class="font-['Pacifico'] text-2xl text-primary"
+              >logo</a
             >
-              <line
-                x1="3"
-                y1="6"
-                x2="21"
-                y2="6"
+          </div>
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="text-gray-700 hover:text-primary">Home</a>
+            <a href="#services" class="text-gray-700 hover:text-primary"
+              >Services</a
+            >
+            <a href="#pricing" class="text-gray-700 hover:text-primary"
+              >Pricing</a
+            >
+            <a href="#contact" class="text-gray-700 hover:text-primary"
+              >Contact</a
+            >
+            <button
+              onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+              class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+            >
+              Book Now
+            </button>
+          </div>
+          <!-- Hamburger Icon for Mobile (always on right) -->
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobileMenuButton"
+              class="text-gray-700 focus:outline-none"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-              ></line>
-              <line
-                x1="3"
-                y1="12"
-                x2="21"
-                y2="12"
-                stroke="currentColor"
-                stroke-width="2"
-              ></line>
-              <line
-                x1="3"
-                y1="18"
-                x2="21"
-                y2="18"
-                stroke="currentColor"
-                stroke-width="2"
-              ></line>
-            </svg>
-          </button>
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-      <nav class="mobile-nav" aria-label="Mobile Navigation">
-        <ul class="nav-list">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#appointment">Appointment</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+      <!-- Mobile Menu: wrapped in same container -->
+      <div id="mobileMenu" class="hidden md:hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col items-start space-y-4 py-4">
+            <a
+              href="#home"
+              class="block text-left text-gray-700 hover:text-primary"
+              >Home</a
+            >
+            <a
+              href="#services"
+              class="block text-left text-gray-700 hover:text-primary"
+              >Services</a
+            >
+            <a
+              href="#pricing"
+              class="block text-left text-gray-700 hover:text-primary"
+              >Pricing</a
+            >
+            <a
+              href="#contact"
+              class="block text-left text-gray-700 hover:text-primary"
+              >Contact</a
+            >
+            <button
+              onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+              class="w-full bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-    <!-- Main Content -->
-    <main id="mainContent">
+    <main class="pt-16">
       <!-- Hero Section -->
-      <section id="home" class="hero" aria-labelledby="heroHeading">
-        <div class="container">
-          <div class="hero-content" data-aos="fade-up">
-            <h1 id="heroHeading">Experience the Perfect Cut at Home</h1>
-            <p>
-              Your style, our passion. We bring the barbershop to your doorstep.
-              Book your appointment today!
+      <section
+        id="home"
+        class="relative h-[600px] bg-cover bg-center"
+        style="
+          background-image: url('https://public.readdy.ai/ai/img_res/efe499a734e495000aa4fed0f5a6ccb4.jpg');
+        "
+      >
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <!-- Hero content container with no horizontal padding on mobile -->
+        <div
+          class="relative max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 h-full flex items-center"
+        >
+          <!-- Text: centered on mobile, left aligned on md+ -->
+          <div class="max-w-2xl text-white text-center md:text-left">
+            <h1 class="text-5xl font-bold mb-6">
+              Professional Haircuts at Your Doorstep
+            </h1>
+            <p class="text-xl mb-8">
+              Experience premium barbering services in the comfort of your home.
+              Our skilled barbers bring the salon experience to you.
             </p>
-            <button id="openModal" class="btn">Book Now</button>
+            <!-- Hero Buttons: center on mobile, left aligned on larger screens -->
+            <div class="flex gap-4 justify-around md:justify-start">
+              <button
+                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+                class="bg-white text-primary px-4 py-2 md:px-6 md:py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap font-semibold"
+              >
+                Book Appointment
+              </button>
+              <button
+                onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
+                class="border-2 border-white text-white px-4 py-2 md:px-6 md:py-2 !rounded-button hover:bg-white hover:text-primary whitespace-nowrap font-semibold"
+              >
+                View Services
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Services Section -->
-      <section id="services" class="services" aria-labelledby="servicesHeading">
-        <div class="container">
-          <h2 id="servicesHeading" data-aos="fade-up">Our Services</h2>
-          <div class="service-items">
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="100">
-              <img src="images/classic.jpg" alt="Classic Haircut" />
-              <h3>Classic Haircut</h3>
-              <p>Timeless style with a modern twist—delivered to your home.</p>
+      <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+              Professional Services
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Experience our expert grooming services delivered with precision
+              and care.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+            >
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-scissors-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-4">Classic Haircut</h3>
+              <p class="text-gray-600">
+                Professional men's haircut with expert styling and finish.
+              </p>
             </div>
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="200">
-              <img src="images/trim.jpg" alt="Shave &amp; Trim" />
-              <h3>Shave &amp; Trim</h3>
-              <p>Precision grooming for a neat look wherever you are.</p>
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+            >
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-scissors-2-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-4">Children's Cut</h3>
+              <p class="text-gray-600">
+                Gentle and patient service for our younger clients.
+              </p>
             </div>
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="300">
-              <img src="images/beard.jpg" alt="Beard Styling" />
-              <h3>Beard Styling</h3>
-              <p>
-                Craft your perfect beard style with our experts at your
-                doorstep.
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+            >
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-brush-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-4">Beard Trim</h3>
+              <p class="text-gray-600">
+                Expert beard shaping and styling for a polished look.
+              </p>
+            </div>
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+            >
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-knife-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-4">Clean Shave</h3>
+              <p class="text-gray-600">
+                Traditional straight razor shave with hot towel service.
               </p>
             </div>
           </div>
@@ -192,311 +301,1116 @@
       </section>
 
       <!-- Pricing Section -->
-      <section id="pricing" class="pricing" aria-labelledby="pricingHeading">
-        <div class="container">
-          <h2 id="pricingHeading" data-aos="fade-up">Pricing</h2>
-          <div class="pricing-cards">
-            <!-- Men's Haircut Card -->
-            <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
-              <div class="card-icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  fill="currentColor"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M477.9 67.9L444.1 35.1C435.3 26.3 422.7 26.3 413.9 35.1L256 192 98.1 35.1C89.3 26.3 76.7 26.3 67.9 35.1L34.1 67.9C25.3 76.7 25.3 89.3 34.1 98.1L192 256 34.1 413.9C25.3 422.7 25.3 435.3 34.1 444.1L67.9 477.9C76.7 486.7 89.3 486.7 98.1 477.9L256 320 413.9 477.9C422.7 486.7 435.3 486.7 444.1 477.9L477.9 444.1C486.7 435.3 486.7 422.7 477.9 413.9L320 256 477.9 98.1C486.7 89.3 486.7 76.7 477.9 67.9z"
-                  ></path>
-                </svg>
+      <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+              Simple Pricing
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Transparent pricing for all our premium grooming services.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+            >
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2 text-left">Basic Cut</h3>
+                <div class="text-3xl font-bold text-primary mb-4 text-left">
+                  $25
+                </div>
+                <ul class="text-gray-600 space-y-3 text-left">
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Classic Children's Haircut
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Basic Styling
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Neck Trim
+                  </li>
+                </ul>
               </div>
-              <h3>Men's Haircut</h3>
-              <p class="price">$25</p>
-              <p class="description">
-                A clean and classic cut to keep you looking sharp.
-              </p>
+              <button
+                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+              >
+                Book Now
+              </button>
             </div>
-            <!-- Children's Haircut Card -->
-            <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  fill="currentColor"
-                  viewBox="0 0 448 512"
+            <div
+              class="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 border-2 border-primary relative transform scale-105"
+            >
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span
+                  class="bg-primary text-white px-4 py-1 rounded-full text-sm"
                 >
-                  <path
-                    d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm0 32c-75 0-224 37.5-224 112v32c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32v-32c0-74.5-149-112-224-112z"
-                  ></path>
-                </svg>
+                  Most Popular
+                </span>
               </div>
-              <h3>Children's Haircut</h3>
-              <p class="price">$20</p>
-              <p class="description">
-                Playful styles for a fresh and fun look.
-              </p>
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2 text-left">
+                  Premium Package
+                </h3>
+                <div class="text-3xl font-bold text-primary mb-4 text-left">
+                  $30
+                </div>
+                <ul class="text-gray-600 space-y-3 text-left">
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Classic Haircut
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Premium Styling
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Beard Trim
+                  </li>
+                </ul>
+              </div>
+              <button
+                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+              >
+                Book Now
+              </button>
             </div>
-            <!-- Beard Trim Card -->
-            <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
-              <div class="card-icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  fill="currentColor"
-                  viewBox="0 0 640 512"
-                >
-                  <path
-                    d="M80 256c0-123.7 100.3-224 224-224 55.3 0 106 21.3 144 56 38-34.7 88.7-56 144-56 123.7 0 224 100.3 224 224 0 55.3-17.8 95.3-46.6 123.4H46.6C17.8 351.3 0 311.3 0 256zm224-96c-53 0-96 43-96 96 0 11.2 1.5 22 4.3 32h187.4c2.8-10 4.3-20.8 4.3-32 0-53-43-96-96-96z"
-                  ></path>
-                </svg>
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+            >
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2 text-left">Beard Trim</h3>
+                <div class="text-3xl font-bold text-primary mb-4 text-left">
+                  $10
+                </div>
+                <ul class="text-gray-600 space-y-3 text-left">
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Professional Beard Trim
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Beard Shaping
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Mustache Trim
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Aftercare Tips
+                  </li>
+                </ul>
               </div>
-              <h3>Beard Trim</h3>
-              <p class="price">$10</p>
-              <p class="description">
-                Shape and refine your beard with expert precision.
-              </p>
+              <button
+                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+              >
+                Book Now
+              </button>
             </div>
-            <!-- Shave Card -->
-            <div class="pricing-card" data-aos="fade-up" data-aos-delay="400">
-              <div class="card-icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  fill="currentColor"
-                  viewBox="0 0 640 512"
-                >
-                  <path
-                    d="M637.8 58.4l-44.7-44.7c-15.1-15.1-39.5-15.1-54.6 0L360.1 181.1c-20.1-12.6-43.3-19.1-68.1-19.1-70.7 0-128 57.3-128 128 0 24.8 6.5 48 19.1 68.1L9.4 569.8c-15.1 15.1-15.1 39.5 0 54.6l44.7 44.7c15.1 15.1 39.5 15.1 54.6 0l209.2-209.2c19.2 11.6 41.3 18.2 65.5 18.2 70.7 0 128-57.3 128-128 0-24.2-6.6-46.3-18.2-65.5l209.2-209.2c15.1-15.1 15.1-39.5 0-54.6zM255.8 425.9L117.7 287.8l106.2-106.2 138.1 138.1L255.8 425.9z"
-                  ></path>
-                </svg>
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+            >
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2 text-left">
+                  Clean Shave
+                </h3>
+                <div class="text-3xl font-bold text-primary mb-4 text-left">
+                  $5
+                </div>
+                <ul class="text-gray-600 space-y-3 text-left">
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Modern Machine & Razor Shave
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Pre-shave Oil
+                  </li>
+                  <li class="flex items-center">
+                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    Aftershave Balm
+                  </li>
+                </ul>
               </div>
-              <h3>Shave</h3>
-              <p class="price">$5</p>
-              <p class="description">
-                Enjoy a smooth, precise shave for a refreshing feel.
-              </p>
+              <button
+                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
+                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+              >
+                Book Now
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Appointment Section -->
-      <section id="appointment" class="appointment" data-aos="fade-up">
-        <div class="container">
-          <h2>Ready for Your New Look at Home?</h2>
-          <button class="btn" id="scheduleAppointment">
-            Schedule Home Appointment
-          </button>
+      <!-- Booking Section -->
+      <section id="booking" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="mb-16 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+              Book Your Appointment
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Schedule your home service in just a few clicks. Our professional
+              barbers are ready to serve you.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div
+              class="booking-step active p-6 border-2 rounded-lg text-center cursor-pointer"
+            >
+              <div
+                class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="ri-scissors-line text-primary"></i>
+              </div>
+              <h3 class="font-semibold mb-2">Choose Service</h3>
+              <p class="text-sm text-gray-600">Select your desired service</p>
+            </div>
+            <div
+              class="booking-step p-6 border-2 rounded-lg text-center cursor-pointer"
+            >
+              <div
+                class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="ri-calendar-line text-primary"></i>
+              </div>
+              <h3 class="font-semibold mb-2">Pick Date & Time</h3>
+              <p class="text-sm text-gray-600">
+                Choose your preferred schedule
+              </p>
+            </div>
+            <div
+              class="booking-step p-6 border-2 rounded-lg text-center cursor-pointer"
+            >
+              <div
+                class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="ri-map-pin-line text-primary"></i>
+              </div>
+              <h3 class="font-semibold mb-2">Your Details</h3>
+              <p class="text-sm text-gray-600">Confirm location and details</p>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <div class="grid md:grid-cols-2 gap-8">
+              <!-- Left Column: Service Selection -->
+              <div>
+                <h3 class="text-xl font-semibold mb-6 text-center md:text-left">
+                  Select Your Service
+                </h3>
+                <!-- 2-by-2 grid on mobile, 1 column on md+ -->
+                <div
+                  id="serviceList"
+                  class="grid grid-cols-2 gap-4 md:grid-cols-1"
+                >
+                  <div
+                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300"
+                    data-service="Classic Haircut"
+                    data-duration="30"
+                    data-price="30"
+                  >
+                    <div class="flex flex-col items-center">
+                      <h4 class="font-semibold">Classic Haircut</h4>
+                      <p class="text-sm text-gray-600">30 mins</p>
+                      <div class="flex items-center gap-4 mt-2">
+                        <span class="text-primary font-semibold">$30</span>
+                        <div
+                          class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300"
+                    data-service="Children's Cut"
+                    data-duration="25"
+                    data-price="25"
+                  >
+                    <div class="flex flex-col items-center">
+                      <h4 class="font-semibold">Children's Cut</h4>
+                      <p class="text-sm text-gray-600">25 mins</p>
+                      <div class="flex items-center gap-4 mt-2">
+                        <span class="text-primary font-semibold">$25</span>
+                        <div
+                          class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300"
+                    data-service="Beard Trim"
+                    data-duration="15"
+                    data-price="10"
+                  >
+                    <div class="flex flex-col items-center">
+                      <h4 class="font-semibold">Beard Trim</h4>
+                      <p class="text-sm text-gray-600">15 mins</p>
+                      <div class="flex items-center gap-4 mt-2">
+                        <span class="text-primary font-semibold">$10</span>
+                        <div
+                          class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300"
+                    data-service="Clean Shave"
+                    data-duration="10"
+                    data-price="5"
+                  >
+                    <div class="flex flex-col items-center">
+                      <h4 class="font-semibold">Clean Shave</h4>
+                      <p class="text-sm text-gray-600">10 mins</p>
+                      <div class="flex items-center gap-4 mt-2">
+                        <span class="text-primary font-semibold">$5</span>
+                        <div
+                          class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Column: Appointment & Customer Details -->
+              <div>
+                <h3 class="text-xl font-semibold mb-6 text-center md:text-left">
+                  Appointment Details
+                </h3>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <div class="space-y-6">
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Your Name</label
+                      >
+                      <input
+                        type="text"
+                        id="customerName"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Phone Number</label
+                      >
+                      <input
+                        type="tel"
+                        id="customerPhone"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        placeholder="Your phone number"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Email Address</label
+                      >
+                      <input
+                        type="email"
+                        id="customerEmail"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        placeholder="Your email address"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Service Address</label
+                      >
+                      <div class="relative">
+                        <input
+                          type="text"
+                          id="addressInput"
+                          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                          placeholder="Start typing your address in Colorado..."
+                        />
+                        <div
+                          id="addressSuggestions"
+                          class="absolute z-10 w-full bg-white border rounded-lg shadow-lg mt-1 hidden max-h-60 overflow-y-auto"
+                        ></div>
+                      </div>
+                    </div>
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Select Date</label
+                      >
+                      <input
+                        type="date"
+                        id="appointmentDate"
+                        min=""
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Select Time</label
+                      >
+                      <select
+                        id="appointmentTime"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary pr-8"
+                      >
+                        <option value="">Choose a time slot</option>
+                      </select>
+                    </div>
+                    <button
+                      id="bookAppointment"
+                      class="w-full bg-primary text-white py-3 !rounded-button mt-6 hover:bg-opacity-90 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                      disabled
+                    >
+                      Book Appointment
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Confirmation Modal -->
+            <div
+              id="confirmationModal"
+              class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+            >
+              <div class="bg-white p-8 rounded-lg max-w-md w-full mx-4">
+                <h3 class="text-xl font-semibold mb-4">
+                  Confirm Your Appointment
+                </h3>
+                <div class="space-y-4 mb-6">
+                  <p class="text-gray-600">
+                    Please review your appointment details:
+                  </p>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="space-y-2" id="modalDetails"></div>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <button
+                    id="confirmBooking"
+                    class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                  >
+                    Confirm
+                  </button>
+                  <button
+                    id="cancelBooking"
+                    class="flex-1 border border-gray-300 py-2 !rounded-button hover:bg-gray-50 whitespace-nowrap"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Success Modal -->
+            <div
+              id="successModal"
+              class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+            >
+              <div
+                class="bg-white p-8 rounded-lg max-w-md w-full mx-4 text-center"
+              >
+                <div
+                  class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="ri-check-line text-green-500 text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Booking Confirmed!</h3>
+                <p class="text-gray-600 mb-6">
+                  Your appointment has been successfully scheduled.
+                </p>
+                <button
+                  id="closeSuccess"
+                  class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                >
+                  Done
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section with Slick Carousel -->
+      <section id="testimonials" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+              What Our Clients Say
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Read what our satisfied customers have to say about their
+              experience with our mobile barbering service.
+            </p>
+          </div>
+          <!-- Slick Carousel container with class "center" -->
+          <div class="center">
+            <!-- Card 1 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "Exceptional service! The convenience of having a professional
+                barber come to my home is unmatched."
+              </p>
+              <div>
+                <h4 class="font-semibold">Michael Anderson</h4>
+                <p class="text-sm text-gray-500">Regular Client</p>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "The attention to detail and professionalism is impressive."
+              </p>
+              <div>
+                <h4 class="font-semibold">James Wilson</h4>
+                <p class="text-sm text-gray-500">Monthly Subscriber</p>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "Best grooming experience I've had. Consistently high quality."
+              </p>
+              <div>
+                <h4 class="font-semibold">Robert Thompson</h4>
+                <p class="text-sm text-gray-500">Premium Member</p>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "I was impressed by the punctuality and friendly service."
+              </p>
+              <div>
+                <h4 class="font-semibold">Lisa Smith</h4>
+                <p class="text-sm text-gray-500">New Client</p>
+              </div>
+            </div>
+            <!-- Card 5 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "Absolutely loved the service. Highly recommend to everyone."
+              </p>
+              <div>
+                <h4 class="font-semibold">David Johnson</h4>
+                <p class="text-sm text-gray-500">Loyal Customer</p>
+              </div>
+            </div>
+            <!-- Card 6 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "A game changer in mobile grooming services."
+              </p>
+              <div>
+                <h4 class="font-semibold">Sophia Lee</h4>
+                <p class="text-sm text-gray-500">Satisfied Customer</p>
+              </div>
+            </div>
+            <!-- Card 7 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "I enjoyed the seamless booking process and the quality
+                service."
+              </p>
+              <div>
+                <h4 class="font-semibold">Mark Davis</h4>
+                <p class="text-sm text-gray-500">Frequent Client</p>
+              </div>
+            </div>
+            <!-- Card 8 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "Top-notch grooming experience. I'll definitely book again."
+              </p>
+              <div>
+                <h4 class="font-semibold">Emily Clark</h4>
+                <p class="text-sm text-gray-500">Returning Customer</p>
+              </div>
+            </div>
+            <!-- Card 9 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "Efficient and professional service every time."
+              </p>
+              <div>
+                <h4 class="font-semibold">Chris Martin</h4>
+                <p class="text-sm text-gray-500">Regular Client</p>
+              </div>
+            </div>
+            <!-- Card 10 -->
+            <div
+              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+            >
+              <div class="flex justify-center mb-4">
+                <div class="text-yellow-400 flex">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "The service exceeded all my expectations."
+              </p>
+              <div>
+                <h4 class="font-semibold">Anna Brown</h4>
+                <p class="text-sm text-gray-500">Happy Client</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Contact Section -->
-      <section id="contact" class="contact" data-aos="fade-up">
-        <div class="container">
-          <h2>Contact Us</h2>
-          <p>
-            Have any questions? Give us a call or book your appointment today!
-          </p>
-          <p>Phone: (123) 456-7890</p>
-          <p>Email: thehomebarber542@gmail.com</p>
+      <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Have questions? Get in touch with us. We're here to help you with
+              any inquiries about our mobile barbering service.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <form class="space-y-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Name</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    placeholder="Your email"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Message</label
+                  >
+                  <textarea
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-32"
+                    placeholder="Your message"
+                  ></textarea>
+                </div>
+                <button
+                  class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+            <div>
+              <div class="bg-gray-50 p-8 rounded-lg h-full">
+                <div class="space-y-6">
+                  <div>
+                    <h3 class="text-xl font-semibold mb-4">
+                      Service Areas in Colorado
+                    </h3>
+                    <div
+                      class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden"
+                    >
+                      <img
+                        src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png"
+                        alt="Colorado service area map"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div class="mt-4 text-gray-600">
+                      <p>We proudly serve the following areas in Colorado:</p>
+                      <ul class="mt-2 grid grid-cols-2 gap-2">
+                        <li>• Denver Metro Area</li>
+                        <li>• Boulder</li>
+                        <li>• Fort Collins</li>
+                        <li>• Colorado Springs</li>
+                        <li>• Aurora</li>
+                        <li>• Lakewood</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold mb-4">
+                      Contact Information
+                    </h3>
+                    <div class="space-y-4">
+                      <div class="flex items-center">
+                        <i class="ri-phone-line text-primary mr-3"></i>
+                        <span>(307) 256-9877</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="ri-mail-line text-primary mr-3"></i>
+                        <span>thehomebarber542@gmail.com</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="ri-time-line text-primary mr-3"></i>
+                        <span>Mon-Sat: 8:00 AM - 8:00 PM MT</span>
+                      </div>
+                      <div class="flex items-center">
+                        <i class="ri-map-pin-line text-primary mr-3"></i>
+                        <span>Based in Denver, Colorado</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer>
-      <div class="container footer-container">
-        <p>
-          &copy; <span id="footerDate"></span> | thehomebarber | All Rights
-          Reserved.
-        </p>
-        <!-- Social Media Icons -->
-        <ul class="social-icons">
-          <li>
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
             <a
-              href="https://www.facebook.com"
-              target="_blank"
-              aria-label="Facebook"
+              href="#home"
+              class="font-['Pacifico'] text-2xl text-white mb-4 block"
+              >logo</a
             >
-              <!-- Facebook Icon -->
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 320 512"
-                fill="currentColor"
-              >
-                <path
-                  d="M279.14 288l14.22-92.66h-88.91V117.69c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S257.43 0 225.36 0c-73.22 0-121.15 44.38-121.15 124.72v70.62H22.89V288h81.32v224h100.2V288z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              aria-label="Instagram"
-            >
-              <!-- Instagram Icon -->
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 448 512"
-                fill="currentColor"
-              >
-                <path
-                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.8 224.1 370.8 339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.3 0-74.7-33.4-74.7-74.7s33.4-74.7 74.7-74.7 74.7 33.4 74.7 74.7-33.4 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.9-26.9 26.9-14.9 0-26.9-12-26.9-26.9 0-14.9 12-26.9 26.9-26.9 14.9 0 26.9 12 26.9 26.9zm76.1 27.2c-1.7-35.7-9.9-67.3-36.2-93.5S370.8 6.1 335.1 4.4c-35.8-1.7-143.2-1.7-179 0C121.3 6.1 89.7 14.3 63.5 40.5 37.2 66.8 29 98.4 27.3 134.1c-1.7 35.8-1.7 143.2 0 179 1.7 35.7 9.9 67.3 36.2 93.5s57.8 34.5 93.5 36.2c35.8 1.7 143.2 1.7 179 0 35.7-1.7 67.3-9.9 93.5-36.2s34.5-57.8 36.2-93.5c1.7-35.8 1.7-143.2 0-179zm-48.1 224c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.9 9s-103.5 2.6-132.9-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.9s-2.6-103.5 9-132.9c7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.2-9 132.9-9s103.5-2.6 132.9 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.9s2.7 103.5-9 132.9z"
-                />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:thehomebarber542@gmail.com"
-              target="_blank"
-              aria-label="Email"
-            >
-              <!-- Email Icon -->
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 512 512"
-                fill="currentColor"
-              >
-                <path
-                  d="M502.3 190.8L327.4 338.7c-15.6 13.7-38.4 13.7-54 0L9.7 190.8C3.9 186.3 0 178.7 0 170.4V112c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v58.4c0 8.3-3.9 15.9-9.7 20.4zM464 160l-175.4 152 175.4 152V160zM48 352l175.4-152L48 48v304zm240 88l176-152V464c0 26.5-21.5 48-48 48H136c-26.5 0-48-21.5-48-48V288l176 152c15.6 13.7 38.4 13.7 54 0z"
-                />
-              </svg>
-            </a>
-          </li>
-        </ul>
+            <p class="text-gray-400">
+              The home barbering services bringing style and convenience to your
+              doorstep.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#home" class="text-gray-400 hover:text-white">Home</a>
+              </li>
+              <li>
+                <a href="#services" class="text-gray-400 hover:text-white"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a href="#pricing" class="text-gray-400 hover:text-white"
+                  >Pricing</a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="text-gray-400 hover:text-white"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Services</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Classic Haircut</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Beard Grooming</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Premium Package</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Kids Haircut</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="ri-facebook-fill text-xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="ri-instagram-fill text-xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="ri-twitter-fill text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2025 The Home Barber. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
-    <!-- Modal -->
-    <div
-      id="modal"
-      class="modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modalTitle"
-    >
-      <div class="modal-content" data-aos="zoom-in">
-        <span
-          id="closeModal"
-          class="close"
-          aria-label="Close modal"
-          tabindex="0"
-          >&times;</span
-        >
-        <h2 id="modalTitle">Book Your Home Service Appointment</h2>
-        <form id="bookingForm">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Your Name"
-              required
-              aria-required="true"
-            />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Your Email"
-              required
-              aria-required="true"
-            />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="Your Phone Number"
-              required
-              aria-required="true"
-            />
-          </div>
-          <div class="form-group">
-            <label for="date">Date</label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              required
-              aria-required="true"
-            />
-            <small>Selected date: <span id="formattedDate"></span></small>
-          </div>
-          <div class="form-group">
-            <label for="time">Time</label>
-            <input
-              type="time"
-              id="time"
-              name="time"
-              required
-              aria-required="true"
-            />
-          </div>
-          <div class="form-group">
-            <label for="service">Service</label>
-            <select id="service" name="service" required aria-required="true">
-              <option value="">Select a Service</option>
-              <option value="haircut">Classic Haircut</option>
-              <option value="shave">Shave &amp; Trim</option>
-              <option value="beard">Beard Styling</option>
-            </select>
-          </div>
-          <button type="submit" class="btn">Submit Appointment</button>
-        </form>
-      </div>
-    </div>
+    <script>
+      // Toggle mobile menu when hamburger icon is clicked
+      document
+        .getElementById("mobileMenuButton")
+        .addEventListener("click", function () {
+          const mobileMenu = document.getElementById("mobileMenu");
+          mobileMenu.classList.toggle("hidden");
+        });
 
-    <!-- Accessibility Widget -->
-    <button
-      id="accessibilityToggle"
-      class="accessibility-btn"
-      aria-label="Accessibility Options"
-    >
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="#fff"
-        aria-hidden="true"
-      >
-        <path
-          d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 14.93V17a1 1 0 002 0v-.07a7.001 7.001 0 01-2 0zM12 4a8 8 0 018 8 8.003 8.003 0 01-2.243 5.657l-.707-.707A6 6 0 1012 6a5.978 5.978 0 00-2.05.347l-.708-.707A8.003 8.003 0 0112 4z"
-        />
-      </svg>
-    </button>
-    <div
-      id="accessibilityPanel"
-      class="accessibility-panel"
-      aria-label="Accessibility Options Panel"
-    >
-      <button id="increaseFont">Increase Font</button>
-      <button id="decreaseFont">Decrease Font</button>
-      <button id="resetFont">Reset Font</button>
-      <button id="toggleContrast">Toggle High Contrast</button>
-      <button id="toggleDyslexic">Toggle Dyslexic Font</button>
-      <button id="toggleSpacing">Toggle Extra Spacing</button>
-    </div>
+      document.addEventListener("DOMContentLoaded", function () {
+        const addressInput = document.getElementById("addressInput");
+        const addressSuggestions =
+          document.getElementById("addressSuggestions");
+        const customerName = document.getElementById("customerName");
+        const customerPhone = document.getElementById("customerPhone");
+        const customerEmail = document.getElementById("customerEmail");
+        const appointmentDate = document.getElementById("appointmentDate");
+        const appointmentTime = document.getElementById("appointmentTime");
+        const bookAppointmentBtn = document.getElementById("bookAppointment");
+        const confirmationModal = document.getElementById("confirmationModal");
+        const successModal = document.getElementById("successModal");
+        const modalDetails = document.getElementById("modalDetails");
+        const bookingSteps = document.querySelectorAll(".booking-step");
+        const serviceCards = document.querySelectorAll("#serviceList > div");
 
-    <!-- AOS JS for scroll animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <!-- Main JavaScript -->
-    <script src="js/script.js"></script>
+        let selectedService = null;
+        const mockAddresses = [
+          "1234 Market St, Denver, CO 80202",
+          "567 Pearl St, Boulder, CO 80302",
+          "890 College Ave, Fort Collins, CO 80524",
+          "432 Tejon St, Colorado Springs, CO 80903",
+          "765 Havana St, Aurora, CO 80010",
+          "321 Wadsworth Blvd, Lakewood, CO 80226",
+          "543 University Ave, Denver, CO 80210",
+          "876 Broadway St, Boulder, CO 80304",
+          "234 Mountain Ave, Fort Collins, CO 80521",
+          "678 Nevada Ave, Colorado Springs, CO 80903",
+        ];
+
+        const today = new Date();
+        appointmentDate.min = today.toISOString().split("T")[0];
+
+        function generateTimeSlots() {
+          appointmentTime.innerHTML =
+            '<option value="">Choose a time slot</option>';
+          const slots = [];
+          for (let hour = 8; hour < 20; hour++) {
+            for (let minute of ["00", "30"]) {
+              slots.push(`${hour.toString().padStart(2, "0")}:${minute}`);
+            }
+          }
+          slots.forEach((slot) => {
+            const option = document.createElement("option");
+            option.value = slot;
+            option.textContent = slot;
+            appointmentTime.appendChild(option);
+          });
+        }
+        generateTimeSlots();
+
+        addressInput.addEventListener("input", (e) => {
+          const value = e.target.value.toLowerCase();
+          if (value) {
+            const filteredAddresses = mockAddresses.filter((addr) =>
+              addr.toLowerCase().includes(value)
+            );
+            addressSuggestions.innerHTML = filteredAddresses
+              .map(
+                (addr) =>
+                  `<div class="p-2 hover:bg-gray-100 cursor-pointer">${addr}</div>`
+              )
+              .join("");
+            addressSuggestions.classList.remove("hidden");
+            addressSuggestions.querySelectorAll("div").forEach((div) => {
+              div.addEventListener("click", () => {
+                addressInput.value = div.textContent;
+                addressSuggestions.classList.add("hidden");
+                updateSummary();
+              });
+            });
+          } else {
+            addressSuggestions.innerHTML = "";
+            addressSuggestions.classList.add("hidden");
+          }
+        });
+        addressInput.addEventListener("focus", () => {
+          addressSuggestions.classList.remove("hidden");
+        });
+        document.addEventListener("click", (e) => {
+          if (
+            !addressInput.contains(e.target) &&
+            !addressSuggestions.contains(e.target)
+          ) {
+            addressSuggestions.classList.add("hidden");
+          }
+        });
+
+        serviceCards.forEach((card) => {
+          card.addEventListener("click", () => {
+            serviceCards.forEach((c) => {
+              c.classList.remove("border-primary");
+              c.querySelector(".service-radio").innerHTML = "";
+            });
+            card.classList.add("border-primary");
+            card.querySelector(".service-radio").innerHTML =
+              '<div class="w-3 h-3 bg-primary rounded-full"></div>';
+            selectedService = {
+              name: card.dataset.service,
+              duration: parseInt(card.dataset.duration),
+              price: parseInt(card.dataset.price),
+            };
+            updateSummary();
+          });
+        });
+
+        function updateSummary() {
+          const nameVal = customerName.value;
+          const phoneVal = customerPhone.value;
+          const emailVal = customerEmail.value;
+          const addressVal = addressInput.value;
+          const dateVal = appointmentDate.value;
+          const timeVal = appointmentTime.value;
+          const allFilled =
+            selectedService &&
+            dateVal &&
+            timeVal &&
+            addressVal &&
+            nameVal &&
+            phoneVal &&
+            emailVal;
+          bookAppointmentBtn.disabled = !allFilled;
+        }
+
+        [
+          customerName,
+          customerPhone,
+          customerEmail,
+          addressInput,
+          appointmentDate,
+          appointmentTime,
+        ].forEach((input) => {
+          input.addEventListener("input", updateSummary);
+          input.addEventListener("change", updateSummary);
+        });
+
+        bookAppointmentBtn.addEventListener("click", () => {
+          if (!selectedService) {
+            modalDetails.innerHTML = `<p>Please select a service first.</p>`;
+            confirmationModal.style.display = "flex";
+            return;
+          }
+          const details = `
+            <p><strong>Customer Name:</strong> ${customerName.value}</p>
+            <p><strong>Phone:</strong> ${customerPhone.value}</p>
+            <p><strong>Email:</strong> ${customerEmail.value}</p>
+            <p><strong>Address:</strong> ${addressInput.value}</p>
+            <p><strong>Date & Time:</strong> ${appointmentDate.value} at ${appointmentTime.value}</p>
+            <p><strong>Service:</strong> ${selectedService.name}</p>
+            <p><strong>Duration:</strong> ${selectedService.duration} mins</p>
+            <p><strong>Total:</strong> $${selectedService.price}</p>
+          `;
+          modalDetails.innerHTML = details;
+          confirmationModal.style.display = "flex";
+        });
+
+        document
+          .getElementById("confirmBooking")
+          .addEventListener("click", () => {
+            confirmationModal.style.display = "none";
+            successModal.style.display = "flex";
+          });
+        document
+          .getElementById("cancelBooking")
+          .addEventListener("click", () => {
+            confirmationModal.style.display = "none";
+          });
+        document
+          .getElementById("closeSuccess")
+          .addEventListener("click", () => {
+            successModal.style.display = "none";
+            serviceCards.forEach((card) => {
+              card.classList.remove("border-primary");
+              card.querySelector(".service-radio").innerHTML = "";
+            });
+            selectedService = null;
+            appointmentDate.value = "";
+            appointmentTime.value = "";
+            addressInput.value = "";
+            customerName.value = "";
+            customerPhone.value = "";
+            customerEmail.value = "";
+            updateSummary();
+          });
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: "smooth" });
+            }
+          });
+        });
+        bookingSteps.forEach((step, index) => {
+          step.addEventListener("click", () => {
+            bookingSteps.forEach((s) =>
+              s.classList.remove("active", "completed")
+            );
+            for (let i = 0; i < index; i++) {
+              bookingSteps[i].classList.add("completed");
+            }
+            step.classList.add("active");
+          });
+        });
+      });
+
+      // Initialize Slick Carousel for testimonials using the .center class
+      $(document).ready(function () {
+        $(".center").slick({
+          centerMode: true,
+          centerPadding: "60px",
+          slidesToShow: 3,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                arrows: true,
+                centerMode: true,
+                centerPadding: "40px",
+                slidesToShow: 3,
+              },
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                arrows: true,
+                centerMode: true,
+                centerPadding: "40px",
+                slidesToShow: 1,
+              },
+            },
+          ],
+        });
+      });
+    </script>
   </body>
 </html>
