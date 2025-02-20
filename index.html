@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mobile Barber Service</title>
+    <title>The Home Barber - Mobile Barber Service</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -29,6 +29,8 @@
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
     />
+    <!-- AOS Animation CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- jQuery (required by Slick Carousel) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Slick Carousel JS -->
@@ -38,6 +40,7 @@
     ></script>
     <script>
       tailwind.config = {
+        darkMode: "class",
         theme: {
           extend: {
             colors: {
@@ -59,8 +62,36 @@
           },
         },
       };
+
+      // Dark mode initialization: Check localStorage or system preference
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+
+      // Toggle dark mode and update localStorage and toggle icon
+      function toggleDarkMode() {
+        document.documentElement.classList.toggle("dark");
+        const toggleIcon = document.getElementById("darkModeIcon");
+        const toggleIconMobile = document.getElementById("darkModeIconMobile");
+        if (document.documentElement.classList.contains("dark")) {
+          localStorage.setItem("theme", "dark");
+          toggleIcon.className = "ri-sun-line text-xl";
+          toggleIconMobile.className = "ri-sun-line text-xl";
+        } else {
+          localStorage.setItem("theme", "light");
+          toggleIcon.className = "ri-moon-line text-xl";
+          toggleIconMobile.className = "ri-moon-line text-xl";
+        }
+      }
     </script>
     <style>
+      /* Global icon fallback */
       :where([class^="ri-"])::before {
         content: "\f3c2";
       }
@@ -82,51 +113,140 @@
       #successModal {
         backdrop-filter: blur(5px);
       }
-      /* Slick Carousel custom styling - Unblur slides and add some horizontal spacing */
+      /* Slick Carousel custom styling */
       .center .slick-slide {
         filter: none;
         opacity: 1;
         transition: all 0.3s ease;
         margin: 0 10px;
       }
-      /* Remove any special styling for the centered slide */
-      .center .slick-center {
-        filter: none;
-        opacity: 1;
-      }
-      /* Optional: Remove slick's default padding if needed */
       .slick-list {
         margin: 0 -10px;
       }
-      /* Style carousel arrows to be black */
       .slick-prev:before,
       .slick-next:before {
         color: black;
       }
+      /* Dark mode adjustments for improved visibility */
+      .dark .text-gray-600 {
+        color: #e5e7eb;
+      }
+      .dark .service-card .text-gray-600,
+      .dark .pricing-card .text-gray-600,
+      .dark .testimonial-card .text-gray-600 {
+        color: #e5e7eb;
+      }
+      .dark .ri-checkbox-circle-line,
+      .dark .ri-scissors-line,
+      .dark .ri-scissors-2-line,
+      .dark .ri-brush-line,
+      .dark .ri-knife-line,
+      .dark .ri-phone-line,
+      .dark .ri-mail-line,
+      .dark .ri-time-line,
+      .dark .ri-map-pin-line {
+        color: #e5e7eb;
+      }
+      .dark .text-primary {
+        color: #60a5fa;
+      }
+      .dark .bg-primary\/10 {
+        background-color: rgba(96, 165, 250, 0.1);
+      }
+      .dark .pricing-card {
+        background-color: #1f2937;
+        border-color: #374151;
+      }
+      .dark .service-icon {
+        color: #60a5fa;
+      }
+      .dark input,
+      .dark select,
+      .dark textarea {
+        background-color: #374151;
+        color: #e5e7eb;
+        border-color: #4b5563;
+      }
+      .dark input::placeholder,
+      .dark textarea::placeholder {
+        color: #9ca3af;
+      }
+      .dark #confirmationModal .bg-white,
+      .dark #successModal .bg-white {
+        background-color: #1f2937;
+      }
+      .dark #confirmationModal .text-gray-600,
+      .dark #successModal .text-gray-600 {
+        color: #e5e7eb;
+      }
+      .dark .testimonial-card {
+        background-color: #1f2937;
+      }
+      .dark .testimonial-card .text-gray-600 {
+        color: #e5e7eb;
+      }
+      /* Skip link for accessibility */
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .skip-link:focus {
+        left: 0;
+        top: 0;
+        width: auto;
+        height: auto;
+        background: #1e3d59;
+        color: white;
+        padding: 0.5rem;
+        z-index: 1000;
+      }
     </style>
   </head>
-  <body class="bg-white font-['Inter']">
+  <body
+    class="bg-white dark:bg-gray-900 text-black dark:text-white font-['Inter']"
+  >
+    <!-- Skip to content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
     <!-- Navbar -->
-    <nav class="fixed top-0 w-full bg-white shadow-sm z-50">
-      <!-- Main container for header -->
+    <!-- Adding left-0 and right-0 with fixed positioning for proper mobile support -->
+    <nav
+      role="navigation"
+      aria-label="Primary Navigation"
+      class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 shadow-sm"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <!-- Logo on the left -->
+          <!-- Logo -->
           <div class="flex items-center">
             <a href="#home" class="font-['Pacifico'] text-2xl text-primary"
               >logo</a
             >
           </div>
-          <!-- Desktop Menu -->
+          <!-- Desktop Navigation & Controls -->
           <div class="hidden md:flex items-center space-x-8">
-            <a href="#home" class="text-gray-700 hover:text-primary">Home</a>
-            <a href="#services" class="text-gray-700 hover:text-primary"
+            <a
+              href="#home"
+              class="text-gray-700 dark:text-white hover:text-primary"
+              >Home</a
+            >
+            <a
+              href="#services"
+              class="text-gray-700 dark:text-white hover:text-primary"
               >Services</a
             >
-            <a href="#pricing" class="text-gray-700 hover:text-primary"
+            <a
+              href="#pricing"
+              class="text-gray-700 dark:text-white hover:text-primary"
               >Pricing</a
             >
-            <a href="#contact" class="text-gray-700 hover:text-primary"
+            <a
+              href="#contact"
+              class="text-gray-700 dark:text-white hover:text-primary"
               >Contact</a
             >
             <button
@@ -135,12 +255,32 @@
             >
               Book Now
             </button>
+            <!-- Dark Mode Toggle -->
+            <button
+              id="darkModeToggle"
+              onclick="toggleDarkMode()"
+              aria-label="Toggle dark mode"
+              class="text-gray-700 dark:text-white focus:outline-none ml-4"
+            >
+              <i id="darkModeIcon" class="ri-moon-line text-xl"></i>
+            </button>
           </div>
-          <!-- Hamburger Icon for Mobile (always on right) -->
-          <div class="md:hidden flex items-center">
+          <!-- Mobile Controls -->
+          <div class="md:hidden flex items-center space-x-2">
+            <button
+              id="darkModeToggleMobile"
+              onclick="toggleDarkMode()"
+              aria-label="Toggle dark mode"
+              class="text-gray-700 dark:text-white focus:outline-none"
+            >
+              <i id="darkModeIconMobile" class="ri-moon-line text-xl"></i>
+            </button>
             <button
               id="mobileMenuButton"
-              class="text-gray-700 focus:outline-none"
+              class="text-gray-700 dark:text-white focus:outline-none"
+              aria-label="Toggle navigation"
+              aria-expanded="false"
+              aria-controls="mobileMenu"
             >
               <svg
                 class="h-6 w-6"
@@ -159,28 +299,28 @@
           </div>
         </div>
       </div>
-      <!-- Mobile Menu: wrapped in same container and centered -->
-      <div id="mobileMenu" class="hidden md:hidden">
+      <!-- Mobile Navigation Menu -->
+      <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex flex-col items-center space-y-4 py-4">
             <a
               href="#home"
-              class="block text-center text-gray-700 hover:text-primary"
+              class="block text-center text-gray-700 dark:text-white hover:text-primary"
               >Home</a
             >
             <a
               href="#services"
-              class="block text-center text-gray-700 hover:text-primary"
+              class="block text-center text-gray-700 dark:text-white hover:text-primary"
               >Services</a
             >
             <a
               href="#pricing"
-              class="block text-center text-gray-700 hover:text-primary"
+              class="block text-center text-gray-700 dark:text-white hover:text-primary"
               >Pricing</a
             >
             <a
               href="#contact"
-              class="block text-center text-gray-700 hover:text-primary"
+              class="block text-center text-gray-700 dark:text-white hover:text-primary"
               >Contact</a
             >
             <button
@@ -194,7 +334,8 @@
       </div>
     </nav>
 
-    <main class="pt-16">
+    <!-- Main Content -->
+    <main id="main-content" class="pt-16">
       <!-- Hero Section -->
       <section
         id="home"
@@ -202,14 +343,13 @@
         style="
           background-image: url('https://public.readdy.ai/ai/img_res/efe499a734e495000aa4fed0f5a6ccb4.jpg');
         "
+        data-aos="fade-up"
+        data-aos-duration="1000"
       >
-        <!-- Dark overlay -->
         <div class="absolute inset-0 bg-black opacity-50"></div>
-        <!-- Hero content container with no horizontal padding on mobile -->
         <div
           class="relative max-w-7xl mx-auto w-full px-0 lg:px-8 h-full flex items-center"
         >
-          <!-- Text: centered on mobile, left aligned on md+ -->
           <div class="max-w-2xl text-white text-center md:text-left">
             <h1 class="text-5xl font-bold mb-6">
               Professional Haircuts at Your Doorstep
@@ -218,7 +358,6 @@
               Experience premium barbering services in the comfort of your home.
               Our skilled barbers bring the salon experience to you.
             </p>
-            <!-- Hero Buttons: centered on mobile and inline -->
             <div
               class="flex justify-center space-x-2 md:justify-start md:space-x-4"
             >
@@ -240,20 +379,27 @@
       </section>
 
       <!-- Services Section -->
-      <section id="services" class="py-20 bg-gray-50">
+      <section
+        id="services"
+        class="py-20 bg-gray-50 dark:bg-gray-700"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Professional Services
             </h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
+            <p class="text-gray-600 dark:text-white max-w-2xl mx-auto">
               Experience our expert grooming services delivered with precision
               and care.
             </p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              data-aos="fade-up"
+              data-aos-delay="0"
             >
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
@@ -261,12 +407,14 @@
                 <i class="ri-scissors-line text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-semibold mb-4">Classic Haircut</h3>
-              <p class="text-gray-600">
+              <p class="text-gray-600 dark:text-white">
                 Professional men's haircut with expert styling and finish.
               </p>
             </div>
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              data-aos="fade-up"
+              data-aos-delay="100"
             >
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
@@ -274,12 +422,14 @@
                 <i class="ri-scissors-2-line text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-semibold mb-4">Children's Cut</h3>
-              <p class="text-gray-600">
+              <p class="text-gray-600 dark:text-white">
                 Gentle and patient service for our younger clients.
               </p>
             </div>
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              data-aos="fade-up"
+              data-aos-delay="200"
             >
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
@@ -287,12 +437,14 @@
                 <i class="ri-brush-line text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-semibold mb-4">Beard Trim</h3>
-              <p class="text-gray-600">
+              <p class="text-gray-600 dark:text-white">
                 Expert beard shaping and styling for a polished look.
               </p>
             </div>
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
@@ -300,7 +452,7 @@
                 <i class="ri-knife-line text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-semibold mb-4">Clean Shave</h3>
-              <p class="text-gray-600">
+              <p class="text-gray-600 dark:text-white">
                 Traditional straight razor shave with hot towel service.
               </p>
             </div>
@@ -309,26 +461,33 @@
       </section>
 
       <!-- Pricing Section -->
-      <section id="pricing" class="py-20 bg-white">
+      <section
+        id="pricing"
+        class="py-20 bg-white dark:bg-gray-900"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Simple Pricing
             </h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
+            <p class="text-gray-600 dark:text-white max-w-2xl mx-auto">
               Transparent pricing for all our premium grooming services.
             </p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div
-              class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card border border-gray-100 dark:border-gray-700"
+              data-aos="fade-up"
+              data-aos-delay="0"
             >
               <div class="mb-6">
                 <h3 class="text-xl font-semibold mb-2 text-left">Basic Cut</h3>
                 <div class="text-3xl font-bold text-primary mb-4 text-left">
                   $25
                 </div>
-                <ul class="text-gray-600 space-y-3 text-left">
+                <ul class="text-gray-600 dark:text-white space-y-3 text-left">
                   <li class="flex items-center">
                     <i class="ri-checkbox-circle-line text-primary mr-2"></i>
                     Classic Children's Haircut
@@ -351,7 +510,9 @@
               </button>
             </div>
             <div
-              class="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 border-2 border-primary relative transform scale-105"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg transition-all duration-300 pricing-card border-2 border-primary relative transform scale-105"
+              data-aos="fade-up"
+              data-aos-delay="100"
             >
               <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span
@@ -366,7 +527,7 @@
                 <div class="text-3xl font-bold text-primary mb-4 text-left">
                   $30
                 </div>
-                <ul class="text-gray-600 space-y-3 text-left">
+                <ul class="text-gray-600 dark:text-white space-y-3 text-left">
                   <li class="flex items-center">
                     <i class="ri-checkbox-circle-line text-primary mr-2"></i>
                     Classic Haircut
@@ -389,14 +550,16 @@
               </button>
             </div>
             <div
-              class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card border border-gray-100 dark:border-gray-700"
+              data-aos="fade-up"
+              data-aos-delay="200"
             >
               <div class="mb-6">
                 <h3 class="text-xl font-semibold mb-2 text-left">Beard Trim</h3>
                 <div class="text-3xl font-bold text-primary mb-4 text-left">
                   $10
                 </div>
-                <ul class="text-gray-600 space-y-3 text-left">
+                <ul class="text-gray-600 dark:text-white space-y-3 text-left">
                   <li class="flex items-center">
                     <i class="ri-checkbox-circle-line text-primary mr-2"></i>
                     Professional Beard Trim
@@ -423,7 +586,9 @@
               </button>
             </div>
             <div
-              class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card border border-gray-100 dark:border-gray-700"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               <div class="mb-6">
                 <h3 class="text-xl font-semibold mb-2 text-left">
@@ -432,10 +597,10 @@
                 <div class="text-3xl font-bold text-primary mb-4 text-left">
                   $5
                 </div>
-                <ul class="text-gray-600 space-y-3 text-left">
+                <ul class="text-gray-600 dark:text-white space-y-3 text-left">
                   <li class="flex items-center">
                     <i class="ri-checkbox-circle-line text-primary mr-2"></i>
-                    Modern Machine & Razor Shave
+                    Modern Machine &amp; Razor Shave
                   </li>
                   <li class="flex items-center">
                     <i class="ri-checkbox-circle-line text-primary mr-2"></i>
@@ -459,13 +624,18 @@
       </section>
 
       <!-- Booking Section -->
-      <section id="booking" class="py-20">
+      <section
+        id="booking"
+        class="py-20 bg-gray-50 dark:bg-gray-800"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="mb-16 text-center">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Book Your Appointment
             </h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
+            <p class="text-gray-600 dark:text-white max-w-2xl mx-auto">
               Schedule your home service in just a few clicks. Our professional
               barbers are ready to serve you.
             </p>
@@ -473,6 +643,8 @@
           <div class="grid md:grid-cols-3 gap-8 mb-8">
             <div
               class="booking-step active p-6 border-2 rounded-lg text-center cursor-pointer"
+              data-aos="fade-up"
+              data-aos-delay="0"
             >
               <div
                 class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -480,23 +652,29 @@
                 <i class="ri-scissors-line text-primary"></i>
               </div>
               <h3 class="font-semibold mb-2">Choose Service</h3>
-              <p class="text-sm text-gray-600">Select your desired service</p>
+              <p class="text-sm text-gray-600 dark:text-white">
+                Select your desired service
+              </p>
             </div>
             <div
               class="booking-step p-6 border-2 rounded-lg text-center cursor-pointer"
+              data-aos="fade-up"
+              data-aos-delay="100"
             >
               <div
                 class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
               >
                 <i class="ri-calendar-line text-primary"></i>
               </div>
-              <h3 class="font-semibold mb-2">Pick Date & Time</h3>
-              <p class="text-sm text-gray-600">
+              <h3 class="font-semibold mb-2">Pick Date &amp; Time</h3>
+              <p class="text-sm text-gray-600 dark:text-white">
                 Choose your preferred schedule
               </p>
             </div>
             <div
               class="booking-step p-6 border-2 rounded-lg text-center cursor-pointer"
+              data-aos="fade-up"
+              data-aos-delay="200"
             >
               <div
                 class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -504,17 +682,18 @@
                 <i class="ri-map-pin-line text-primary"></i>
               </div>
               <h3 class="font-semibold mb-2">Your Details</h3>
-              <p class="text-sm text-gray-600">Confirm location and details</p>
+              <p class="text-sm text-gray-600 dark:text-white">
+                Confirm location and details
+              </p>
             </div>
           </div>
-          <div class="bg-white p-8 rounded-lg shadow-sm">
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm">
             <div class="grid md:grid-cols-2 gap-8">
               <!-- Left Column: Service Selection -->
               <div>
                 <h3 class="text-xl font-semibold mb-6 text-center md:text-left">
                   Select Your Service
                 </h3>
-                <!-- Mobile view: 2x2 grid; Desktop: vertical list -->
                 <div
                   id="serviceList"
                   class="grid grid-cols-2 gap-4 md:grid-cols-1 md:space-y-4"
@@ -525,13 +704,15 @@
                     data-service="Classic Haircut"
                     data-duration="30"
                     data-price="30"
+                    data-aos="fade-up"
+                    data-aos-delay="0"
                   >
-                    <!-- Left side: Name + Duration -->
                     <div>
                       <h4 class="font-semibold">Classic Haircut</h4>
-                      <p class="text-sm text-gray-600">30 mins</p>
+                      <p class="text-sm text-gray-600 dark:text-white">
+                        30 mins
+                      </p>
                     </div>
-                    <!-- Right side: Price + Radio -->
                     <div class="flex items-center gap-3 mt-2 md:mt-0">
                       <span class="text-primary font-semibold">$30</span>
                       <div
@@ -539,17 +720,20 @@
                       ></div>
                     </div>
                   </div>
-
                   <!-- Children's Cut -->
                   <div
                     class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Children's Cut"
                     data-duration="25"
                     data-price="25"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
                   >
                     <div>
                       <h4 class="font-semibold">Children's Cut</h4>
-                      <p class="text-sm text-gray-600">25 mins</p>
+                      <p class="text-sm text-gray-600 dark:text-white">
+                        25 mins
+                      </p>
                     </div>
                     <div class="flex items-center gap-3 mt-2 md:mt-0">
                       <span class="text-primary font-semibold">$25</span>
@@ -558,17 +742,20 @@
                       ></div>
                     </div>
                   </div>
-
                   <!-- Beard Trim -->
                   <div
                     class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Beard Trim"
                     data-duration="15"
                     data-price="10"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
                   >
                     <div>
                       <h4 class="font-semibold">Beard Trim</h4>
-                      <p class="text-sm text-gray-600">15 mins</p>
+                      <p class="text-sm text-gray-600 dark:text-white">
+                        15 mins
+                      </p>
                     </div>
                     <div class="flex items-center gap-3 mt-2 md:mt-0">
                       <span class="text-primary font-semibold">$10</span>
@@ -577,17 +764,20 @@
                       ></div>
                     </div>
                   </div>
-
                   <!-- Clean Shave -->
                   <div
                     class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Clean Shave"
                     data-duration="10"
                     data-price="5"
+                    data-aos="fade-up"
+                    data-aos-delay="300"
                   >
                     <div>
                       <h4 class="font-semibold">Clean Shave</h4>
-                      <p class="text-sm text-gray-600">10 mins</p>
+                      <p class="text-sm text-gray-600 dark:text-white">
+                        10 mins
+                      </p>
                     </div>
                     <div class="flex items-center gap-3 mt-2 md:mt-0">
                       <span class="text-primary font-semibold">$5</span>
@@ -598,87 +788,87 @@
                   </div>
                 </div>
               </div>
-              <!-- Right Column: Appointment & Customer Details -->
+              <!-- Right Column: Appointment & Details -->
               <div>
                 <h3 class="text-xl font-semibold mb-6 text-center md:text-left">
                   Appointment Details
                 </h3>
-                <div class="bg-gray-50 p-6 rounded-lg">
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
                   <div class="space-y-6">
                     <div>
                       <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
+                        class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Your Name</label
                       >
                       <input
                         type="text"
                         id="customerName"
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
                         placeholder="Your full name"
                       />
                     </div>
                     <div>
                       <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
+                        class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Phone Number</label
                       >
                       <input
                         type="tel"
                         id="customerPhone"
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
                         placeholder="Your phone number"
                       />
                     </div>
                     <div>
                       <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
+                        class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Email Address</label
                       >
                       <input
                         type="email"
                         id="customerEmail"
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
                         placeholder="Your email address"
                       />
                     </div>
                     <div>
                       <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
+                        class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Service Address</label
                       >
                       <div class="relative">
                         <input
                           type="text"
                           id="addressInput"
-                          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
                           placeholder="Start typing your address in Colorado..."
                         />
                         <div
                           id="addressSuggestions"
-                          class="absolute z-10 w-full bg-white border rounded-lg shadow-lg mt-1 hidden max-h-60 overflow-y-auto"
+                          class="absolute z-10 w-full bg-white dark:bg-gray-600 border dark:border-gray-500 rounded-lg shadow-lg mt-1 hidden max-h-60 overflow-y-auto"
                         ></div>
                       </div>
                     </div>
                     <div>
                       <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
+                        class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Select Date</label
                       >
                       <input
                         type="date"
                         id="appointmentDate"
                         min=""
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
                       />
                     </div>
                     <div>
                       <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
+                        class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Select Time</label
                       >
                       <select
                         id="appointmentTime"
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary pr-8"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary pr-8 dark:bg-gray-700 dark:text-white dark:border-gray-600"
                       >
                         <option value="">Choose a time slot</option>
                       </select>
@@ -699,15 +889,17 @@
               id="confirmationModal"
               class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
             >
-              <div class="bg-white p-8 rounded-lg max-w-md w-full mx-4">
+              <div
+                class="bg-white dark:bg-gray-800 p-8 rounded-lg max-w-md w-full mx-4"
+              >
                 <h3 class="text-xl font-semibold mb-4">
                   Confirm Your Appointment
                 </h3>
                 <div class="space-y-4 mb-6">
-                  <p class="text-gray-600">
+                  <p class="text-gray-600 dark:text-white">
                     Please review your appointment details:
                   </p>
-                  <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
                     <div class="space-y-2" id="modalDetails"></div>
                   </div>
                 </div>
@@ -720,7 +912,7 @@
                   </button>
                   <button
                     id="cancelBooking"
-                    class="flex-1 border border-gray-300 py-2 !rounded-button hover:bg-gray-50 whitespace-nowrap"
+                    class="flex-1 border border-gray-300 dark:border-gray-600 py-2 !rounded-button hover:bg-gray-50 dark:hover:bg-gray-600 whitespace-nowrap"
                   >
                     Cancel
                   </button>
@@ -733,7 +925,7 @@
               class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
             >
               <div
-                class="bg-white p-8 rounded-lg max-w-md w-full mx-4 text-center"
+                class="bg-white dark:bg-gray-800 p-8 rounded-lg max-w-md w-full mx-4 text-center"
               >
                 <div
                   class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -741,7 +933,7 @@
                   <i class="ri-check-line text-green-500 text-3xl"></i>
                 </div>
                 <h3 class="text-xl font-semibold mb-2">Booking Confirmed!</h3>
-                <p class="text-gray-600 mb-6">
+                <p class="text-gray-600 dark:text-white mb-6">
                   Your appointment has been successfully scheduled.
                 </p>
                 <button
@@ -757,22 +949,28 @@
       </section>
 
       <!-- Testimonials Section with Slick Carousel -->
-      <section id="testimonials" class="py-20 bg-gray-50">
+      <section
+        id="testimonials"
+        class="py-20 bg-gray-50 dark:bg-gray-800"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               What Our Clients Say
             </h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
+            <p class="text-gray-600 dark:text-white max-w-2xl mx-auto">
               Read what our satisfied customers have to say about their
               experience with our mobile barbering service.
             </p>
           </div>
-          <!-- Slick Carousel container with class "center" -->
           <div class="center">
-            <!-- Card 1 -->
+            <!-- Testimonial Card 1 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="0"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -783,18 +981,20 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "Exceptional service! The convenience of having a professional
                 barber come to my home is unmatched."
               </p>
               <div>
                 <h4 class="font-semibold">Michael Anderson</h4>
-                <p class="text-sm text-gray-500">Regular Client</p>
+                <p class="text-sm dark:text-white">Regular Client</p>
               </div>
             </div>
-            <!-- Card 2 -->
+            <!-- Testimonial Card 2 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="100"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -805,17 +1005,19 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "The attention to detail and professionalism is impressive."
               </p>
               <div>
                 <h4 class="font-semibold">James Wilson</h4>
-                <p class="text-sm text-gray-500">Monthly Subscriber</p>
+                <p class="text-sm dark:text-white">Monthly Subscriber</p>
               </div>
             </div>
-            <!-- Card 3 -->
+            <!-- Testimonial Card 3 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="200"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -826,17 +1028,19 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "Best grooming experience I've had. Consistently high quality."
               </p>
               <div>
                 <h4 class="font-semibold">Robert Thompson</h4>
-                <p class="text-sm text-gray-500">Premium Member</p>
+                <p class="text-sm dark:text-white">Premium Member</p>
               </div>
             </div>
-            <!-- Card 4 -->
+            <!-- Testimonial Card 4 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -847,17 +1051,19 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "I was impressed by the punctuality and friendly service."
               </p>
               <div>
                 <h4 class="font-semibold">Lisa Smith</h4>
-                <p class="text-sm text-gray-500">New Client</p>
+                <p class="text-sm dark:text-white">New Client</p>
               </div>
             </div>
-            <!-- Card 5 -->
+            <!-- Testimonial Card 5 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="400"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -868,17 +1074,19 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "Absolutely loved the service. Highly recommend to everyone."
               </p>
               <div>
                 <h4 class="font-semibold">David Johnson</h4>
-                <p class="text-sm text-gray-500">Loyal Customer</p>
+                <p class="text-sm dark:text-white">Loyal Customer</p>
               </div>
             </div>
-            <!-- Card 6 -->
+            <!-- Testimonial Card 6 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="500"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -889,17 +1097,19 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "A game changer in mobile grooming services."
               </p>
               <div>
                 <h4 class="font-semibold">Sophia Lee</h4>
-                <p class="text-sm text-gray-500">Satisfied Customer</p>
+                <p class="text-sm dark:text-white">Satisfied Customer</p>
               </div>
             </div>
-            <!-- Card 7 -->
+            <!-- Testimonial Card 7 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="600"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -910,18 +1120,20 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "I enjoyed the seamless booking process and the quality
                 service."
               </p>
               <div>
                 <h4 class="font-semibold">Mark Davis</h4>
-                <p class="text-sm text-gray-500">Frequent Client</p>
+                <p class="text-sm dark:text-white">Frequent Client</p>
               </div>
             </div>
-            <!-- Card 8 -->
+            <!-- Testimonial Card 8 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="700"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -932,17 +1144,19 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "Top-notch grooming experience. I'll definitely book again."
               </p>
               <div>
                 <h4 class="font-semibold">Emily Clark</h4>
-                <p class="text-sm text-gray-500">Returning Customer</p>
+                <p class="text-sm dark:text-white">Returning Customer</p>
               </div>
             </div>
-            <!-- Card 9 -->
+            <!-- Testimonial Card 9 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="800"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -953,17 +1167,19 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "Efficient and professional service every time."
               </p>
               <div>
                 <h4 class="font-semibold">Chris Martin</h4>
-                <p class="text-sm text-gray-500">Regular Client</p>
+                <p class="text-sm dark:text-white">Regular Client</p>
               </div>
             </div>
-            <!-- Card 10 -->
+            <!-- Testimonial Card 10 -->
             <div
-              class="bg-white p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm transition-all duration-300 testimonial-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="900"
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
@@ -974,12 +1190,12 @@
                   <i class="ri-star-fill"></i>
                 </div>
               </div>
-              <p class="text-gray-600 mb-6">
+              <p class="text-gray-600 dark:text-white mb-6">
                 "The service exceeded all my expectations."
               </p>
               <div>
                 <h4 class="font-semibold">Anna Brown</h4>
-                <p class="text-sm text-gray-500">Happy Client</p>
+                <p class="text-sm dark:text-white">Happy Client</p>
               </div>
             </div>
           </div>
@@ -987,11 +1203,18 @@
       </section>
 
       <!-- Contact Section -->
-      <section id="contact" class="py-20">
+      <section
+        id="contact"
+        class="py-20 bg-white dark:bg-gray-900"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Contact Us
+            </h2>
+            <p class="text-gray-600 dark:text-white max-w-2xl mx-auto">
               Have questions? Get in touch with us. We're here to help you with
               any inquiries about our mobile barbering service.
             </p>
@@ -1000,31 +1223,34 @@
             <div>
               <form class="space-y-6">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                  <label
+                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                     >Name</label
                   >
                   <input
                     type="text"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                  <label
+                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                     >Email</label
                   >
                   <input
                     type="email"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
                     placeholder="Your email"
                   />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                  <label
+                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                     >Message</label
                   >
                   <textarea
-                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-32"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-32 dark:bg-gray-700 dark:text-white dark:border-gray-600"
                     placeholder="Your message"
                   ></textarea>
                 </div>
@@ -1036,7 +1262,7 @@
               </form>
             </div>
             <div>
-              <div class="bg-gray-50 p-8 rounded-lg h-full">
+              <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg h-full">
                 <div class="space-y-6">
                   <div>
                     <h3 class="text-xl font-semibold mb-4">
@@ -1051,7 +1277,7 @@
                         class="w-full h-full object-cover"
                       />
                     </div>
-                    <div class="mt-4 text-gray-600">
+                    <div class="mt-4 text-gray-600 dark:text-white">
                       <p>We proudly serve the following areas in Colorado:</p>
                       <ul class="mt-2 grid grid-cols-2 gap-2">
                         <li>• Denver Metro Area</li>
@@ -1095,7 +1321,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 dark:bg-gray-800 text-white py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-4 gap-8">
           <div>
@@ -1186,6 +1412,9 @@
         .getElementById("mobileMenuButton")
         .addEventListener("click", function () {
           const mobileMenu = document.getElementById("mobileMenu");
+          const expanded =
+            this.getAttribute("aria-expanded") === "true" || false;
+          this.setAttribute("aria-expanded", !expanded);
           mobileMenu.classList.toggle("hidden");
         });
 
@@ -1397,7 +1626,7 @@
         });
       });
 
-      // Initialize Slick Carousel for testimonials without blur and with responsive slides
+      // Initialize Slick Carousel for testimonials
       $(document).ready(function () {
         $(".center").slick({
           slidesToShow: 3,
@@ -1414,6 +1643,11 @@
           ],
         });
       });
+    </script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({ once: true });
     </script>
   </body>
 </html>
