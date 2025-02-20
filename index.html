@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>The Home Barber - Mobile Barber Service</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,10 +13,13 @@
       href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Remixicon -->
+    <!-- Font Awesome 6 (Modern Icons) -->
     <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-papNM8xt68e6AfcYFtq+kSk6BkssQxHyhhZBkqiPDITN1bCogOwJLQZyUrnFKe14i/BDXHa+3LL+UexkP+0P/A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <!-- Slick Carousel CSS -->
     <link
@@ -57,13 +60,12 @@
               "2xl": "24px",
               "3xl": "32px",
               full: "9999px",
-              button: "8px",
             },
           },
         },
       };
 
-      // Dark mode initialization: Check localStorage or system preference
+      // Dark mode initialization: Check localStorage or system preference.
       if (
         localStorage.getItem("theme") === "dark" ||
         (!localStorage.getItem("theme") &&
@@ -74,45 +76,53 @@
         document.documentElement.classList.remove("dark");
       }
 
-      // Toggle dark mode and update localStorage and toggle icon
+      // Toggle dark mode and update localStorage and toggle icon.
       function toggleDarkMode() {
         document.documentElement.classList.toggle("dark");
         const toggleIcon = document.getElementById("darkModeIcon");
         const toggleIconMobile = document.getElementById("darkModeIconMobile");
         if (document.documentElement.classList.contains("dark")) {
           localStorage.setItem("theme", "dark");
-          toggleIcon.className = "ri-sun-line text-xl";
-          toggleIconMobile.className = "ri-sun-line text-xl";
+          toggleIcon.className = "fa-solid fa-sun text-xl";
+          toggleIconMobile.className = "fa-solid fa-sun text-xl";
         } else {
           localStorage.setItem("theme", "light");
-          toggleIcon.className = "ri-moon-line text-xl";
-          toggleIconMobile.className = "ri-moon-line text-xl";
+          toggleIcon.className = "fa-solid fa-moon text-xl";
+          toggleIconMobile.className = "fa-solid fa-moon text-xl";
         }
       }
     </script>
     <style>
-      /* Global icon fallback */
-      :where([class^="ri-"])::before {
-        content: "\f3c2";
+      /* Set the proper font families loaded from Google Fonts */
+      html,
+      body {
+        font-family: "Inter", sans-serif;
       }
+      /* Apply the Pacifico font to elements with the logo class */
+      .logo,
+      .logo a {
+        font-family: "Pacifico", cursive;
+      }
+
+      /* Custom rounded-button class */
+      .rounded-button {
+        border-radius: 8px !important;
+      }
+
+      /* Card hover effects */
       .service-card:hover {
         transform: translateY(-5px);
       }
       .testimonial-card:hover {
         transform: scale(1.02);
       }
-      .booking-step.active {
-        border-color: #1e3d59;
-      }
-      .booking-step.completed {
-        background-color: #1e3d59;
-        color: white;
-      }
+
       /* Modal overlay blur */
       #confirmationModal,
       #successModal {
         backdrop-filter: blur(5px);
       }
+
       /* Slick Carousel custom styling */
       .center .slick-slide {
         filter: none;
@@ -127,7 +137,8 @@
       .slick-next:before {
         color: black;
       }
-      /* Dark mode adjustments for improved visibility */
+
+      /* Dark mode adjustments */
       .dark .text-gray-600 {
         color: #e5e7eb;
       }
@@ -136,15 +147,11 @@
       .dark .testimonial-card .text-gray-600 {
         color: #e5e7eb;
       }
-      .dark .ri-checkbox-circle-line,
-      .dark .ri-scissors-line,
-      .dark .ri-scissors-2-line,
-      .dark .ri-brush-line,
-      .dark .ri-knife-line,
-      .dark .ri-phone-line,
-      .dark .ri-mail-line,
-      .dark .ri-time-line,
-      .dark .ri-map-pin-line {
+      .dark .fa-check-circle,
+      .dark .fa-phone,
+      .dark .fa-envelope,
+      .dark .fa-clock,
+      .dark .fa-location-dot {
         color: #e5e7eb;
       }
       .dark .text-primary {
@@ -155,7 +162,6 @@
       }
       .dark .pricing-card {
         background-color: #1f2937;
-        border-color: #374151;
       }
       .dark .service-icon {
         color: #60a5fa;
@@ -185,6 +191,7 @@
       .dark .testimonial-card .text-gray-600 {
         color: #e5e7eb;
       }
+
       /* Skip link for accessibility */
       .skip-link {
         position: absolute;
@@ -204,16 +211,22 @@
         padding: 0.5rem;
         z-index: 1000;
       }
+
+      /* Booking Step Hover Animation */
+      .booking-step {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .booking-step:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
     </style>
   </head>
-  <body
-    class="bg-white dark:bg-gray-900 text-black dark:text-white font-['Inter']"
-  >
+  <body class="bg-white dark:bg-gray-900 text-black dark:text-white">
     <!-- Skip to content link for keyboard users -->
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Navbar -->
-    <!-- Adding left-0 and right-0 with fixed positioning for proper mobile support -->
     <nav
       role="navigation"
       aria-label="Primary Navigation"
@@ -223,9 +236,7 @@
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <div class="flex items-center">
-            <a href="#home" class="font-['Pacifico'] text-2xl text-primary"
-              >logo</a
-            >
+            <a href="#home" class="logo text-2xl text-primary">logo</a>
           </div>
           <!-- Desktop Navigation & Controls -->
           <div class="hidden md:flex items-center space-x-8">
@@ -250,8 +261,8 @@
               >Contact</a
             >
             <button
-              onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
-              class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+              onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"
+              class="bg-primary text-white px-6 py-2 rounded-button hover:bg-opacity-90 whitespace-nowrap"
             >
               Book Now
             </button>
@@ -262,7 +273,7 @@
               aria-label="Toggle dark mode"
               class="text-gray-700 dark:text-white focus:outline-none ml-4"
             >
-              <i id="darkModeIcon" class="ri-moon-line text-xl"></i>
+              <i id="darkModeIcon" class="fa-solid fa-moon text-xl"></i>
             </button>
           </div>
           <!-- Mobile Controls -->
@@ -273,7 +284,7 @@
               aria-label="Toggle dark mode"
               class="text-gray-700 dark:text-white focus:outline-none"
             >
-              <i id="darkModeIconMobile" class="ri-moon-line text-xl"></i>
+              <i id="darkModeIconMobile" class="fa-solid fa-moon text-xl"></i>
             </button>
             <button
               id="mobileMenuButton"
@@ -324,8 +335,8 @@
               >Contact</a
             >
             <button
-              onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
-              class="w-full bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+              onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"
+              class="w-full bg-primary text-white px-6 py-2 rounded-button hover:bg-opacity-90 whitespace-nowrap"
             >
               Book Now
             </button>
@@ -362,14 +373,14 @@
               class="flex justify-center space-x-2 md:justify-start md:space-x-4"
             >
               <button
-                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
-                class="bg-white text-primary px-4 py-2 md:px-6 md:py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap font-semibold"
+                onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"
+                class="bg-white text-primary px-4 py-2 md:px-6 md:py-2 rounded-button hover:bg-opacity-90 whitespace-nowrap font-semibold"
               >
                 Book Appointment
               </button>
               <button
-                onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
-                class="border-2 border-white text-white px-4 py-2 md:px-6 md:py-2 !rounded-button hover:bg-white hover:text-primary whitespace-nowrap font-semibold"
+                onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })"
+                class="border-2 border-white text-white px-4 py-2 md:px-6 md:py-2 rounded-button hover:bg-white hover:text-primary whitespace-nowrap font-semibold"
               >
                 View Services
               </button>
@@ -397,14 +408,14 @@
           </div>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div
-              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card text-center"
               data-aos="fade-up"
               data-aos-delay="0"
             >
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
               >
-                <i class="ri-scissors-line text-primary text-2xl"></i>
+                <i class="fa-solid fa-scissors text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-semibold mb-4">Classic Haircut</h3>
               <p class="text-gray-600 dark:text-white">
@@ -412,14 +423,14 @@
               </p>
             </div>
             <div
-              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card text-center"
               data-aos="fade-up"
               data-aos-delay="100"
             >
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
               >
-                <i class="ri-scissors-2-line text-primary text-2xl"></i>
+                <i class="fa-solid fa-child text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-semibold mb-4">Children's Cut</h3>
               <p class="text-gray-600 dark:text-white">
@@ -427,14 +438,14 @@
               </p>
             </div>
             <div
-              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card text-center"
               data-aos="fade-up"
               data-aos-delay="200"
             >
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
               >
-                <i class="ri-brush-line text-primary text-2xl"></i>
+                <i class="fa-solid fa-beard text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-semibold mb-4">Beard Trim</h3>
               <p class="text-gray-600 dark:text-white">
@@ -442,14 +453,14 @@
               </p>
             </div>
             <div
-              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card hover:shadow-lg text-center"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm transition-all duration-300 service-card text-center"
               data-aos="fade-up"
               data-aos-delay="300"
             >
               <div
                 class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
               >
-                <i class="ri-knife-line text-primary text-2xl"></i>
+                <i class="fa-solid fa-razor text-primary text-2xl"></i>
               </div>
               <h3 class="text-xl font-semibold mb-4">Clean Shave</h3>
               <p class="text-gray-600 dark:text-white">
@@ -478,7 +489,7 @@
           </div>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div
-              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card border border-gray-100 dark:border-gray-700"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card"
               data-aos="fade-up"
               data-aos-delay="0"
             >
@@ -489,28 +500,28 @@
                 </div>
                 <ul class="text-gray-600 dark:text-white space-y-3 text-left">
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Classic Children's Haircut
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Basic Styling
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Neck Trim
                   </li>
                 </ul>
               </div>
               <button
-                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
-                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"
+                class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 whitespace-nowrap"
               >
                 Book Now
               </button>
             </div>
             <div
-              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg transition-all duration-300 pricing-card border-2 border-primary relative transform scale-105"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg transition-all duration-300 pricing-card relative transform scale-105"
               data-aos="fade-up"
               data-aos-delay="100"
             >
@@ -529,28 +540,28 @@
                 </div>
                 <ul class="text-gray-600 dark:text-white space-y-3 text-left">
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Classic Haircut
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Premium Styling
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Beard Trim
                   </li>
                 </ul>
               </div>
               <button
-                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
-                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"
+                class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 whitespace-nowrap"
               >
                 Book Now
               </button>
             </div>
             <div
-              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card border border-gray-100 dark:border-gray-700"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card"
               data-aos="fade-up"
               data-aos-delay="200"
             >
@@ -561,32 +572,32 @@
                 </div>
                 <ul class="text-gray-600 dark:text-white space-y-3 text-left">
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Professional Beard Trim
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Beard Shaping
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Mustache Trim
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Aftercare Tips
                   </li>
                 </ul>
               </div>
               <button
-                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
-                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"
+                class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 whitespace-nowrap"
               >
                 Book Now
               </button>
             </div>
             <div
-              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card border border-gray-100 dark:border-gray-700"
+              class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 pricing-card"
               data-aos="fade-up"
               data-aos-delay="300"
             >
@@ -599,22 +610,22 @@
                 </div>
                 <ul class="text-gray-600 dark:text-white space-y-3 text-left">
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Modern Machine &amp; Razor Shave
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Pre-shave Oil
                   </li>
                   <li class="flex items-center">
-                    <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                    <i class="fa-solid fa-check-circle text-primary mr-2"></i>
                     Aftershave Balm
                   </li>
                 </ul>
               </div>
               <button
-                onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})"
-                class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"
+                class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 whitespace-nowrap"
               >
                 Book Now
               </button>
@@ -641,45 +652,34 @@
             </p>
           </div>
           <div class="grid md:grid-cols-3 gap-8 mb-8">
-            <div
-              class="booking-step active p-6 border-2 rounded-lg text-center cursor-pointer"
-              data-aos="fade-up"
-              data-aos-delay="0"
-            >
+            <!-- Booking-step cards (hover-only animations; no click functionality) -->
+            <div class="booking-step active p-6 rounded-lg text-center">
               <div
                 class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
               >
-                <i class="ri-scissors-line text-primary"></i>
+                <i class="fa-solid fa-scissors text-primary"></i>
               </div>
               <h3 class="font-semibold mb-2">Choose Service</h3>
               <p class="text-sm text-gray-600 dark:text-white">
                 Select your desired service
               </p>
             </div>
-            <div
-              class="booking-step p-6 border-2 rounded-lg text-center cursor-pointer"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
+            <div class="booking-step p-6 rounded-lg text-center">
               <div
                 class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
               >
-                <i class="ri-calendar-line text-primary"></i>
+                <i class="fa-solid fa-calendar text-primary"></i>
               </div>
               <h3 class="font-semibold mb-2">Pick Date &amp; Time</h3>
               <p class="text-sm text-gray-600 dark:text-white">
                 Choose your preferred schedule
               </p>
             </div>
-            <div
-              class="booking-step p-6 border-2 rounded-lg text-center cursor-pointer"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
+            <div class="booking-step p-6 rounded-lg text-center">
               <div
                 class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
               >
-                <i class="ri-map-pin-line text-primary"></i>
+                <i class="fa-solid fa-location-dot text-primary"></i>
               </div>
               <h3 class="font-semibold mb-2">Your Details</h3>
               <p class="text-sm text-gray-600 dark:text-white">
@@ -700,7 +700,7 @@
                 >
                   <!-- Classic Haircut -->
                   <div
-                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
+                    class="p-4 rounded-lg cursor-pointer hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Classic Haircut"
                     data-duration="30"
                     data-price="30"
@@ -716,13 +716,13 @@
                     <div class="flex items-center gap-3 mt-2 md:mt-0">
                       <span class="text-primary font-semibold">$30</span>
                       <div
-                        class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                        class="w-6 h-6 rounded-full flex items-center justify-center service-radio"
                       ></div>
                     </div>
                   </div>
                   <!-- Children's Cut -->
                   <div
-                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
+                    class="p-4 rounded-lg cursor-pointer hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Children's Cut"
                     data-duration="25"
                     data-price="25"
@@ -738,13 +738,13 @@
                     <div class="flex items-center gap-3 mt-2 md:mt-0">
                       <span class="text-primary font-semibold">$25</span>
                       <div
-                        class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                        class="w-6 h-6 rounded-full flex items-center justify-center service-radio"
                       ></div>
                     </div>
                   </div>
                   <!-- Beard Trim -->
                   <div
-                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
+                    class="p-4 rounded-lg cursor-pointer hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Beard Trim"
                     data-duration="15"
                     data-price="10"
@@ -760,13 +760,13 @@
                     <div class="flex items-center gap-3 mt-2 md:mt-0">
                       <span class="text-primary font-semibold">$10</span>
                       <div
-                        class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                        class="w-6 h-6 rounded-full flex items-center justify-center service-radio"
                       ></div>
                     </div>
                   </div>
                   <!-- Clean Shave -->
                   <div
-                    class="p-4 border rounded-lg cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
+                    class="p-4 rounded-lg cursor-pointer hover:shadow-md transition-all duration-300 flex flex-col gap-1 md:flex-row md:items-center md:justify-between"
                     data-service="Clean Shave"
                     data-duration="10"
                     data-price="5"
@@ -782,7 +782,7 @@
                     <div class="flex items-center gap-3 mt-2 md:mt-0">
                       <span class="text-primary font-semibold">$5</span>
                       <div
-                        class="w-6 h-6 border-2 border-primary rounded-full flex items-center justify-center service-radio"
+                        class="w-6 h-6 rounded-full flex items-center justify-center service-radio"
                       ></div>
                     </div>
                   </div>
@@ -875,7 +875,7 @@
                     </div>
                     <button
                       id="bookAppointment"
-                      class="w-full bg-primary text-white py-3 !rounded-button mt-6 hover:bg-opacity-90 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                      class="w-full bg-primary text-white py-3 rounded-button mt-6 hover:bg-opacity-90 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
                       disabled
                     >
                       Book Appointment
@@ -906,13 +906,13 @@
                 <div class="flex gap-4">
                   <button
                     id="confirmBooking"
-                    class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                    class="flex-1 bg-primary text-white py-2 rounded-button hover:bg-opacity-90 whitespace-nowrap"
                   >
                     Confirm
                   </button>
                   <button
                     id="cancelBooking"
-                    class="flex-1 border border-gray-300 dark:border-gray-600 py-2 !rounded-button hover:bg-gray-50 dark:hover:bg-gray-600 whitespace-nowrap"
+                    class="flex-1 border border-gray-300 dark:border-gray-600 py-2 rounded-button hover:bg-gray-50 dark:hover:bg-gray-600 whitespace-nowrap"
                   >
                     Cancel
                   </button>
@@ -930,7 +930,7 @@
                 <div
                   class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
                 >
-                  <i class="ri-check-line text-green-500 text-3xl"></i>
+                  <i class="fa-solid fa-check text-green-500 text-3xl"></i>
                 </div>
                 <h3 class="text-xl font-semibold mb-2">Booking Confirmed!</h3>
                 <p class="text-gray-600 dark:text-white mb-6">
@@ -938,7 +938,7 @@
                 </p>
                 <button
                   id="closeSuccess"
-                  class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                  class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 whitespace-nowrap"
                 >
                   Done
                 </button>
@@ -974,11 +974,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -998,11 +998,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1021,11 +1021,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1044,11 +1044,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1067,11 +1067,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1090,11 +1090,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1113,11 +1113,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1137,11 +1137,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1160,11 +1160,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1183,11 +1183,11 @@
             >
               <div class="flex justify-center mb-4">
                 <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                 </div>
               </div>
               <p class="text-gray-600 dark:text-white mb-6">
@@ -1255,7 +1255,7 @@
                   ></textarea>
                 </div>
                 <button
-                  class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap"
+                  class="w-full bg-primary text-white py-3 rounded-button hover:bg-opacity-90 whitespace-nowrap"
                 >
                   Send Message
                 </button>
@@ -1295,19 +1295,21 @@
                     </h3>
                     <div class="space-y-4">
                       <div class="flex items-center">
-                        <i class="ri-phone-line text-primary mr-3"></i>
+                        <i class="fa-solid fa-phone text-primary mr-3"></i>
                         <span>(307) 256-9877</span>
                       </div>
                       <div class="flex items-center">
-                        <i class="ri-mail-line text-primary mr-3"></i>
+                        <i class="fa-solid fa-envelope text-primary mr-3"></i>
                         <span>thehomebarber542@gmail.com</span>
                       </div>
                       <div class="flex items-center">
-                        <i class="ri-time-line text-primary mr-3"></i>
+                        <i class="fa-solid fa-clock text-primary mr-3"></i>
                         <span>Mon-Sat: 8:00 AM - 8:00 PM MT</span>
                       </div>
                       <div class="flex items-center">
-                        <i class="ri-map-pin-line text-primary mr-3"></i>
+                        <i
+                          class="fa-solid fa-location-dot text-primary mr-3"
+                        ></i>
                         <span>Based in Denver, Colorado</span>
                       </div>
                     </div>
@@ -1325,11 +1327,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-4 gap-8">
           <div>
-            <a
-              href="#home"
-              class="font-['Pacifico'] text-2xl text-white mb-4 block"
-              >logo</a
-            >
+            <a href="#home" class="logo text-2xl text-white mb-4 block">logo</a>
             <p class="text-gray-400">
               The home barbering services bringing style and convenience to your
               doorstep.
@@ -1387,13 +1385,13 @@
             <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
             <div class="flex space-x-4">
               <a href="#" class="text-gray-400 hover:text-white">
-                <i class="ri-facebook-fill text-xl"></i>
+                <i class="fa-brands fa-facebook-f text-xl"></i>
               </a>
               <a href="#" class="text-gray-400 hover:text-white">
-                <i class="ri-instagram-fill text-xl"></i>
+                <i class="fa-brands fa-instagram text-xl"></i>
               </a>
               <a href="#" class="text-gray-400 hover:text-white">
-                <i class="ri-twitter-fill text-xl"></i>
+                <i class="fa-brands fa-twitter text-xl"></i>
               </a>
             </div>
           </div>
@@ -1431,7 +1429,6 @@
         const confirmationModal = document.getElementById("confirmationModal");
         const successModal = document.getElementById("successModal");
         const modalDetails = document.getElementById("modalDetails");
-        const bookingSteps = document.querySelectorAll(".booking-step");
         const serviceCards = document.querySelectorAll("#serviceList > div");
 
         let selectedService = null;
@@ -1613,17 +1610,7 @@
             }
           });
         });
-        bookingSteps.forEach((step, index) => {
-          step.addEventListener("click", () => {
-            bookingSteps.forEach((s) =>
-              s.classList.remove("active", "completed")
-            );
-            for (let i = 0; i < index; i++) {
-              bookingSteps[i].classList.add("completed");
-            }
-            step.classList.add("active");
-          });
-        });
+        // Note: Booking-step cards animate on hover only (click event removed)
       });
 
       // Initialize Slick Carousel for testimonials
