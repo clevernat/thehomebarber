@@ -122,16 +122,17 @@
         transform: scale(1.02);
       }
       .testimonial-text {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
         position: relative;
+        max-height: 4.5em;
+        overflow: hidden;
         margin-bottom: 1.5rem;
-        min-height: 4.5rem;
+        line-height: 1.5em;
       }
       .testimonial-text.has-tooltip {
         cursor: pointer;
+      }
+      .testimonial-text.has-tooltip p {
+        display: inline;
       }
       .testimonial-text.has-tooltip:after {
         content: "...";
