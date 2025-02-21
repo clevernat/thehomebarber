@@ -871,8 +871,10 @@
                       <input
                         type="tel"
                         id="customerPhone"
+                        pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                         class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                        placeholder="Your phone number"
+                        placeholder="Your phone number (e.g. 1234567890)"
+                        required
                       />
                     </div>
                     <div>
@@ -897,12 +899,9 @@
                           type="text"
                           id="addressInput"
                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                          placeholder="Start typing your address in Colorado..."
+                          placeholder="Enter your address in Colorado"
+                          required
                         />
-                        <div
-                          id="addressSuggestions"
-                          class="absolute z-10 w-full bg-white dark:bg-gray-600 border dark:border-gray-500 rounded-lg shadow-lg mt-1 hidden max-h-60 overflow-y-auto"
-                        ></div>
                       </div>
                     </div>
                     <div>
@@ -1502,16 +1501,21 @@
 
         let selectedService = null;
         const mockAddresses = [
-          "1234 Market St, Denver, CO 80202",
-          "567 Pearl St, Boulder, CO 80302",
-          "890 College Ave, Fort Collins, CO 80524",
-          "432 Tejon St, Colorado Springs, CO 80903",
-          "765 Havana St, Aurora, CO 80010",
-          "321 Wadsworth Blvd, Lakewood, CO 80226",
-          "543 University Ave, Denver, CO 80210",
-          "876 Broadway St, Boulder, CO 80304",
-          "234 Mountain Ave, Fort Collins, CO 80521",
-          "678 Nevada Ave, Colorado Springs, CO 80903",
+          "123 Main Street, Denver, CO 80202",
+          "456 Pearl Street, Boulder, CO 80302",
+          "789 College Avenue, Fort Collins, CO 80524",
+          "321 Tejon Street, Colorado Springs, CO 80903",
+          "654 Havana Street, Aurora, CO 80010",
+          "987 Wadsworth Boulevard, Lakewood, CO 80226",
+          "741 University Avenue, Denver, CO 80210",
+          "852 Broadway Street, Boulder, CO 80304",
+          "963 Mountain Avenue, Fort Collins, CO 80521",
+          "159 Nevada Avenue, Colorado Springs, CO 80903",
+          "753 Colfax Avenue, Denver, CO 80204",
+          "951 Lincoln Street, Brighton, CO 80601",
+          "357 Washington Street, Golden, CO 80401",
+          "846 Market Street, Englewood, CO 80110",
+          "264 Union Boulevard, Lakewood, CO 80228",
         ];
 
         const today = new Date();
@@ -1535,42 +1539,7 @@
         }
         generateTimeSlots();
 
-        addressInput.addEventListener("input", (e) => {
-          const value = e.target.value.toLowerCase();
-          if (value) {
-            const filteredAddresses = mockAddresses.filter((addr) =>
-              addr.toLowerCase().includes(value)
-            );
-            addressSuggestions.innerHTML = filteredAddresses
-              .map(
-                (addr) =>
-                  `<div class="p-2 hover:bg-gray-100 cursor-pointer">${addr}</div>`
-              )
-              .join("");
-            addressSuggestions.classList.remove("hidden");
-            addressSuggestions.querySelectorAll("div").forEach((div) => {
-              div.addEventListener("click", () => {
-                addressInput.value = div.textContent;
-                addressSuggestions.classList.add("hidden");
-                updateSummary();
-              });
-            });
-          } else {
-            addressSuggestions.innerHTML = "";
-            addressSuggestions.classList.add("hidden");
-          }
-        });
-        addressInput.addEventListener("focus", () => {
-          addressSuggestions.classList.remove("hidden");
-        });
-        document.addEventListener("click", (e) => {
-          if (
-            !addressInput.contains(e.target) &&
-            !addressSuggestions.contains(e.target)
-          ) {
-            addressSuggestions.classList.add("hidden");
-          }
-        });
+        // Address input is now manually typed
 
         serviceCards.forEach((card) => {
           card.addEventListener("click", () => {
