@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f0f0f0"/>
+  <path d="M100,100 L700,100 L700,500 L100,500 Z" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- State outline -->
+  <path d="M100,100 L700,100 L700,500 L100,500 Z" fill="none" stroke="#333" stroke-width="4"/>
+  
+  <!-- Major cities -->
+  <!-- Denver -->
+  <circle cx="400" cy="300" r="15" fill="#3A5199" stroke="#000" stroke-width="2"/>
+  <text x="400" y="340" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold">Denver</text>
+  
+  <!-- Boulder -->
+  <circle cx="370" cy="250" r="10" fill="#3A5199" stroke="#000" stroke-width="2"/>
+  <text x="370" y="230" text-anchor="middle" font-family="Arial" font-size="16">Boulder</text>
+  
+  <!-- Fort Collins -->
+  <circle cx="370" cy="180" r="10" fill="#3A5199" stroke="#000" stroke-width="2"/>
+  <text x="370" y="160" text-anchor="middle" font-family="Arial" font-size="16">Fort Collins</text>
+  
+  <!-- Colorado Springs -->
+  <circle cx="400" cy="380" r="10" fill="#3A5199" stroke="#000" stroke-width="2"/>
+  <text x="400" y="410" text-anchor="middle" font-family="Arial" font-size="16">Colorado Springs</text>
+  
+  <!-- Title -->
+  <text x="400" y="70" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">Colorado</text>
+  
+  <!-- Legend -->
+  <rect x="600" y="420" width="20" height="20" fill="#3A5199" stroke="#000" stroke-width="1"/>
+  <text x="630" y="435" font-family="Arial" font-size="14">Service Areas</text>
+</svg>

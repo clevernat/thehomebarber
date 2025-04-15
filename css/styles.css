@@ -1,0 +1,408 @@
+/* Set the proper font families loaded from Google Fonts */
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Apply the Playfair Display font to elements with the logo class */
+.logo,
+.logo a {
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.5px;
+}
+
+/* Custom rounded-button class with modern styling */
+.rounded-button {
+  border-radius: 8px !important;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.rounded-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.rounded-button:hover::after {
+  opacity: 1;
+}
+
+/* Card hover effects with enhanced animations */
+.service-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card {
+  width: 300px;
+  height: 280px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-text {
+  position: relative;
+  max-height: 4.5em;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  line-height: 1.5em;
+}
+
+.testimonial-text.has-tooltip {
+  cursor: pointer;
+}
+
+.testimonial-text.has-tooltip p {
+  display: inline;
+}
+
+.testimonial-text.has-tooltip:after {
+  content: "...";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: white;
+  padding: 0 4px;
+}
+
+.dark .testimonial-text.has-tooltip:after {
+  background: #374151;
+}
+
+.testimonial-tooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 300px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.testimonial-text.has-tooltip:hover .testimonial-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Modal overlay with modern glass effect */
+#confirmationModal,
+#successModal {
+  backdrop-filter: blur(8px);
+}
+
+#confirmationModal .bg-white,
+#successModal .bg-white {
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Slick Carousel custom styling */
+.center .slick-slide {
+  filter: none;
+  opacity: 1;
+  transition: all 0.3s ease;
+  margin: 0 15px;
+}
+
+.slick-list {
+  margin: 0 -15px;
+  padding: 30px 0;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #3a5199;
+  font-size: 24px;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #3a5199;
+}
+
+/* Dark mode adjustments with smoother transitions */
+.dark .text-gray-600 {
+  color: #e5e7eb;
+}
+
+.dark .service-card .text-gray-600,
+.dark .pricing-card .text-gray-600,
+.dark .testimonial-card .text-gray-600 {
+  color: #e5e7eb;
+}
+
+.dark .fa-check-circle,
+.dark .fa-phone,
+.dark .fa-envelope,
+.dark .fa-clock,
+.dark .fa-location-dot {
+  color: #e5e7eb;
+}
+
+.dark .text-primary {
+  color: #60a5fa;
+}
+
+.dark .bg-primary\/10 {
+  background-color: rgba(96, 165, 250, 0.1);
+}
+
+.dark .pricing-card {
+  background-color: #1f2937;
+}
+
+.dark .service-icon {
+  color: #60a5fa;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #374151;
+  color: #e5e7eb;
+  border-color: #4b5563;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #9ca3af;
+}
+
+.dark #confirmationModal .bg-white,
+.dark #successModal .bg-white {
+  background-color: #1f2937;
+}
+
+.dark #confirmationModal .text-gray-600,
+.dark #successModal .text-gray-600 {
+  color: #e5e7eb;
+}
+
+.dark .testimonial-card {
+  background-color: #1f2937;
+}
+
+.dark .testimonial-card .text-gray-600 {
+  color: #e5e7eb;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  background: #3a5199;
+  color: white;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+/* Booking Step Hover Animation with enhanced effects */
+.booking-step {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.4s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.booking-step:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* Modern gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, #3a5199 0%, #4ecdc4 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #3a5199 0%, #4ecdc4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Modern service icon styling */
+.service-icon-container {
+  position: relative;
+  z-index: 1;
+}
+
+.service-icon-container::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(135deg, #3a5199 0%, #4ecdc4 100%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.2;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon-container::before {
+  opacity: 0.4;
+  transform: scale(1.1);
+}
+
+/* Modern pricing card styling */
+.pricing-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pricing-card::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(58, 81, 153, 0.05) 0%,
+    rgba(78, 205, 196, 0.05) 100%
+  );
+  transform: rotate(30deg);
+  transition: all 0.4s ease;
+}
+
+.pricing-card:hover::before {
+  transform: rotate(20deg) scale(1.1);
+}
+
+.pricing-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Modern form styling */
+input,
+select,
+textarea {
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  transform: translateY(-2px);
+}
+
+/* Animated underline for navigation links */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(90deg, #3a5199 0%, #4ecdc4 100%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a5199;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4ecdc4;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #60a5fa;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4ecdc4;
+}

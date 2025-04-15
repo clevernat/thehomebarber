@@ -158,477 +158,10 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
     ></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#3A5199", // Updated modern blue
-              secondary: "#FF6B6B", // Updated vibrant accent color
-              tertiary: "#4ECDC4", // New teal accent color
-              dark: "#2D3748", // Dark shade for text
-              light: "#F7FAFC", // Light shade for backgrounds
-            },
-            borderRadius: {
-              none: "0px",
-              sm: "4px",
-              DEFAULT: "8px",
-              md: "12px",
-              lg: "16px",
-              xl: "20px",
-              "2xl": "24px",
-              "3xl": "32px",
-              full: "9999px",
-            },
-            boxShadow: {
-              custom:
-                "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
-              card: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
-              hover:
-                "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
-            },
-          },
-        },
-      };
-
-      // Dark mode initialization: Check localStorage or system preference.
-      if (
-        localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-
-      // Toggle dark mode and update localStorage and toggle icon.
-      function toggleDarkMode() {
-        document.documentElement.classList.toggle("dark");
-        const toggleIcon = document.getElementById("darkModeIcon");
-        const toggleIconMobile = document.getElementById("darkModeIconMobile");
-        if (document.documentElement.classList.contains("dark")) {
-          localStorage.setItem("theme", "dark");
-          toggleIcon.className = "fa-solid fa-sun text-xl";
-          toggleIconMobile.className = "fa-solid fa-sun text-xl";
-        } else {
-          localStorage.setItem("theme", "light");
-          toggleIcon.className = "fa-solid fa-moon text-xl";
-          toggleIconMobile.className = "fa-solid fa-moon text-xl";
-        }
-      }
-    </script>
-    <style>
-      /* Set the proper font families loaded from Google Fonts */
-      html,
-      body {
-        font-family: "Poppins", sans-serif;
-        scroll-behavior: smooth;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Montserrat", sans-serif;
-      }
-
-      /* Apply the Playfair Display font to elements with the logo class */
-      .logo,
-      .logo a {
-        font-family: "Playfair Display", serif;
-        letter-spacing: 0.5px;
-      }
-
-      /* Custom rounded-button class with modern styling */
-      .rounded-button {
-        border-radius: 8px !important;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .rounded-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -4px rgba(0, 0, 0, 0.1);
-      }
-
-      .rounded-button::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: rgba(255, 255, 255, 0.1);
-        opacity: 0;
-        transition: all 0.3s ease;
-      }
-
-      .rounded-button:hover::after {
-        opacity: 1;
-      }
-
-      /* Card hover effects with enhanced animations */
-      .service-card {
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -2px rgba(0, 0, 0, 0.1);
-      }
-
-      .service-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 8px 10px -6px rgba(0, 0, 0, 0.1);
-      }
-
-      .testimonial-card {
-        width: 300px;
-        height: 280px;
-        position: relative;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -2px rgba(0, 0, 0, 0.1);
-      }
-
-      .testimonial-card:hover {
-        transform: scale(1.03);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 8px 10px -6px rgba(0, 0, 0, 0.1);
-      }
-
-      .testimonial-text {
-        position: relative;
-        max-height: 4.5em;
-        overflow: hidden;
-        margin-bottom: 1.5rem;
-        line-height: 1.5em;
-      }
-
-      .testimonial-text.has-tooltip {
-        cursor: pointer;
-      }
-
-      .testimonial-text.has-tooltip p {
-        display: inline;
-      }
-
-      .testimonial-text.has-tooltip:after {
-        content: "...";
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        background: white;
-        padding: 0 4px;
-      }
-
-      .dark .testimonial-text.has-tooltip:after {
-        background: #374151;
-      }
-
-      .testimonial-tooltip {
-        visibility: hidden;
-        position: absolute;
-        z-index: 100;
-        background-color: rgba(0, 0, 0, 0.9);
-        color: white;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        width: 300px;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      .testimonial-text.has-tooltip:hover .testimonial-tooltip {
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .testimonial-author {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-
-      /* Modal overlay with modern glass effect */
-      #confirmationModal,
-      #successModal {
-        backdrop-filter: blur(8px);
-      }
-
-      #confirmationModal .bg-white,
-      #successModal .bg-white {
-        border-radius: 16px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      }
-
-      /* Slick Carousel custom styling */
-      .center .slick-slide {
-        filter: none;
-        opacity: 1;
-        transition: all 0.3s ease;
-        margin: 0 15px;
-      }
-
-      .slick-list {
-        margin: 0 -15px;
-        padding: 30px 0;
-      }
-
-      .slick-prev:before,
-      .slick-next:before {
-        color: #3a5199;
-        font-size: 24px;
-      }
-
-      .slick-dots li button:before {
-        font-size: 12px;
-        color: #3a5199;
-      }
-
-      /* Dark mode adjustments with smoother transitions */
-      .dark .text-gray-600 {
-        color: #e5e7eb;
-      }
-
-      .dark .service-card .text-gray-600,
-      .dark .pricing-card .text-gray-600,
-      .dark .testimonial-card .text-gray-600 {
-        color: #e5e7eb;
-      }
-
-      .dark .fa-check-circle,
-      .dark .fa-phone,
-      .dark .fa-envelope,
-      .dark .fa-clock,
-      .dark .fa-location-dot {
-        color: #e5e7eb;
-      }
-
-      .dark .text-primary {
-        color: #60a5fa;
-      }
-
-      .dark .bg-primary\/10 {
-        background-color: rgba(96, 165, 250, 0.1);
-      }
-
-      .dark .pricing-card {
-        background-color: #1f2937;
-      }
-
-      .dark .service-icon {
-        color: #60a5fa;
-      }
-
-      .dark input,
-      .dark select,
-      .dark textarea {
-        background-color: #374151;
-        color: #e5e7eb;
-        border-color: #4b5563;
-      }
-
-      .dark input::placeholder,
-      .dark textarea::placeholder {
-        color: #9ca3af;
-      }
-
-      .dark #confirmationModal .bg-white,
-      .dark #successModal .bg-white {
-        background-color: #1f2937;
-      }
-
-      .dark #confirmationModal .text-gray-600,
-      .dark #successModal .text-gray-600 {
-        color: #e5e7eb;
-      }
-
-      .dark .testimonial-card {
-        background-color: #1f2937;
-      }
-
-      .dark .testimonial-card .text-gray-600 {
-        color: #e5e7eb;
-      }
-
-      /* Skip link for accessibility */
-      .skip-link {
-        position: absolute;
-        left: -999px;
-        top: auto;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-      }
-
-      .skip-link:focus {
-        left: 0;
-        top: 0;
-        width: auto;
-        height: auto;
-        background: #3a5199;
-        color: white;
-        padding: 0.5rem;
-        z-index: 1000;
-      }
-
-      /* Booking Step Hover Animation with enhanced effects */
-      .booking-step {
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-          box-shadow 0.4s ease;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-      }
-
-      .booking-step:hover {
-        transform: scale(1.05);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 8px 10px -6px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Modern gradient backgrounds */
-      .gradient-bg {
-        background: linear-gradient(135deg, #3a5199 0%, #4ecdc4 100%);
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, #3a5199 0%, #4ecdc4 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-      }
-
-      /* Modern service icon styling */
-      .service-icon-container {
-        position: relative;
-        z-index: 1;
-      }
-
-      .service-icon-container::before {
-        content: "";
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-        background: linear-gradient(135deg, #3a5199 0%, #4ecdc4 100%);
-        border-radius: 50%;
-        z-index: -1;
-        opacity: 0.2;
-        transition: all 0.3s ease;
-      }
-
-      .service-card:hover .service-icon-container::before {
-        opacity: 0.4;
-        transform: scale(1.1);
-      }
-
-      /* Modern pricing card styling */
-      .pricing-card {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-      .pricing-card::before {
-        content: "";
-        position: absolute;
-        width: 200%;
-        height: 200%;
-        top: -50%;
-        left: -50%;
-        z-index: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(58, 81, 153, 0.05) 0%,
-          rgba(78, 205, 196, 0.05) 100%
-        );
-        transform: rotate(30deg);
-        transition: all 0.4s ease;
-      }
-
-      .pricing-card:hover::before {
-        transform: rotate(20deg) scale(1.1);
-      }
-
-      .pricing-card > * {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* Modern form styling */
-      input,
-      select,
-      textarea {
-        transition: all 0.3s ease;
-      }
-
-      input:focus,
-      select:focus,
-      textarea:focus {
-        transform: translateY(-2px);
-      }
-
-      /* Animated underline for navigation links */
-      .nav-link {
-        position: relative;
-      }
-
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -4px;
-        left: 0;
-        background: linear-gradient(90deg, #3a5199 0%, #4ecdc4 100%);
-        transition: width 0.3s ease;
-      }
-
-      .nav-link:hover::after {
-        width: 100%;
-      }
-
-      /* Modern scrollbar */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: #3a5199;
-        border-radius: 5px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: #4ecdc4;
-      }
-
-      /* Dark mode scrollbar */
-      .dark ::-webkit-scrollbar-track {
-        background: #2d3748;
-      }
-
-      .dark ::-webkit-scrollbar-thumb {
-        background: #60a5fa;
-      }
-
-      .dark ::-webkit-scrollbar-thumb:hover {
-        background: #4ecdc4;
-      }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- Custom JavaScript -->
+    <script src="js/darkMode.js"></script>
   </head>
   <body class="bg-white dark:bg-gray-900 text-black dark:text-white">
     <!-- Skip to content link for keyboard users -->
@@ -1292,6 +825,7 @@
                   <div class="space-y-6">
                     <div>
                       <label
+                        for="customerName"
                         class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Your Name</label
                       >
@@ -1304,6 +838,7 @@
                     </div>
                     <div>
                       <label
+                        for="customerPhone"
                         class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Phone Number</label
                       >
@@ -1318,6 +853,7 @@
                     </div>
                     <div>
                       <label
+                        for="customerEmail"
                         class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Email Address</label
                       >
@@ -1330,6 +866,7 @@
                     </div>
                     <div>
                       <label
+                        for="addressInput"
                         class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Service Address</label
                       >
@@ -1345,6 +882,7 @@
                     </div>
                     <div>
                       <label
+                        for="appointmentDate"
                         class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Select Date</label
                       >
@@ -1357,6 +895,7 @@
                     </div>
                     <div>
                       <label
+                        for="appointmentTime"
                         class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
                         >Select Time</label
                       >
@@ -1766,52 +1305,64 @@
             </p>
           </div>
           <div
-            class="grid md:grid-cols-2 gap-12 justify-items-center md:justify-items-start"
+            class="flex flex-col md:flex-row md:justify-between items-center md:items-start gap-12"
           >
-            <div class="mx-auto w-full max-w-md">
-              <form class="space-y-6 text-center md:text-left">
-                <div class="mx-auto md:mx-0">
+            <div
+              class="w-full max-w-md flex flex-col items-center md:items-start"
+            >
+              <form
+                class="w-full space-y-6 flex flex-col items-center md:items-start"
+              >
+                <div class="w-full">
                   <label
-                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
+                    for="contactName"
+                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2 text-center md:text-left"
                     >Name</label
                   >
                   <input
                     type="text"
-                    class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600 shadow-sm mx-auto md:mx-0"
+                    id="contactName"
+                    class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600 shadow-sm"
                     placeholder="Your name"
                   />
                 </div>
-                <div class="mx-auto md:mx-0">
+                <div class="w-full">
                   <label
-                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
+                    for="contactEmail"
+                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2 text-center md:text-left"
                     >Email</label
                   >
                   <input
                     type="email"
-                    class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600 shadow-sm mx-auto md:mx-0"
+                    id="contactEmail"
+                    class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:border-gray-600 shadow-sm"
                     placeholder="Your email"
                   />
                 </div>
-                <div class="mx-auto md:mx-0">
+                <div class="w-full">
                   <label
-                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2"
+                    for="contactMessage"
+                    class="block text-sm font-medium text-gray-700 dark:text-white mb-2 text-center md:text-left"
                     >Message</label
                   >
                   <textarea
-                    class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-32 dark:bg-gray-700 dark:text-white dark:border-gray-600 shadow-sm mx-auto md:mx-0"
+                    id="contactMessage"
+                    class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-32 dark:bg-gray-700 dark:text-white dark:border-gray-600 shadow-sm"
                     placeholder="Your message"
                   ></textarea>
                 </div>
                 <button
-                  class="w-full bg-gradient-to-r from-primary to-tertiary text-white py-3 rounded-lg hover:bg-opacity-90 whitespace-nowrap shadow-md font-medium transition-all duration-300 hover:scale-[1.02] mx-auto md:mx-0"
+                  class="w-full bg-gradient-to-r from-primary to-tertiary text-white py-3 rounded-lg hover:bg-opacity-90 whitespace-nowrap shadow-md font-medium transition-all duration-300 hover:scale-[1.02]"
                 >
                   Send Message
                 </button>
               </form>
             </div>
-            <div class="mx-auto w-full max-w-md">
+            <div
+              class="w-full max-w-md flex flex-col items-center md:items-start"
+            >
               <div
-                class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-card h-full"
+                class="w-full bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-card h-full"
               >
                 <div class="space-y-8">
                   <div>
@@ -1821,13 +1372,28 @@
                       Service Areas in Colorado
                     </h3>
                     <div
-                      class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-md"
+                      class="rounded-xl overflow-hidden shadow-md bg-white p-2"
                     >
-                      <img
-                        src="https://geology.com/state-map/maps/colorado-county-map.gif"
-                        alt="Colorado service area map"
-                        class="w-full h-full object-cover"
-                      />
+                      <div class="w-full h-64 md:h-80">
+                        <iframe
+                          title="Interactive map of Colorado showing service areas including Denver, Boulder, and Fort Collins"
+                          src="https://www.openstreetmap.org/export/embed.html?bbox=-106.17797851562501%2C39.22773226959899%2C-104.5819091796875%2C40.78054143186031&amp;layer=mapnik&amp;marker=40.01078714046552%2C-105.37994384765625"
+                          width="100%"
+                          height="100%"
+                          style="border: 1px solid #ccc; border-radius: 8px"
+                          allowfullscreen=""
+                          loading="lazy"
+                          class="w-full h-full"
+                        ></iframe>
+                      </div>
+                      <div class="mt-2 text-center">
+                        <a
+                          href="https://www.openstreetmap.org/?mlat=40.011&amp;mlon=-105.380#map=9/40.011/-105.380"
+                          target="_blank"
+                          class="text-primary hover:underline text-sm"
+                          >View larger map</a
+                        >
+                      </div>
                     </div>
                     <div class="mt-6 text-gray-600 dark:text-white">
                       <p class="mb-4 text-center sm:text-center md:text-left">
@@ -2105,265 +1671,16 @@
       </div>
     </footer>
 
-    <script>
-      // Initialize dark mode based on user preference or system setting
-      if (
-        localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
+    <!-- Module JavaScript files -->
+    <script src="js/navigation.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/carousel.js"></script>
 
-      // Toggle dark mode and update localStorage and toggle icon.
-      function toggleDarkMode() {
-        document.documentElement.classList.toggle("dark");
-        const toggleIcon = document.getElementById("darkModeIcon");
-        const toggleIconMobile = document.getElementById("darkModeIconMobile");
-        if (document.documentElement.classList.contains("dark")) {
-          localStorage.setItem("theme", "dark");
-          toggleIcon.className = "fa-solid fa-sun text-xl";
-          toggleIconMobile.className = "fa-solid fa-sun text-xl";
-        } else {
-          localStorage.setItem("theme", "light");
-          toggleIcon.className = "fa-solid fa-moon text-xl";
-          toggleIconMobile.className = "fa-solid fa-moon text-xl";
-        }
-      }
-
-      // Toggle mobile menu when hamburger icon is clicked
-      document
-        .getElementById("mobileMenuButton")
-        .addEventListener("click", function () {
-          const mobileMenu = document.getElementById("mobileMenu");
-          const expanded =
-            this.getAttribute("aria-expanded") === "true" || false;
-          this.setAttribute("aria-expanded", !expanded);
-          mobileMenu.classList.toggle("hidden");
-        });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const addressInput = document.getElementById("addressInput");
-        const addressSuggestions =
-          document.getElementById("addressSuggestions");
-        const customerName = document.getElementById("customerName");
-        const customerPhone = document.getElementById("customerPhone");
-        const customerEmail = document.getElementById("customerEmail");
-        const appointmentDate = document.getElementById("appointmentDate");
-        const appointmentTime = document.getElementById("appointmentTime");
-        const bookAppointmentBtn = document.getElementById("bookAppointment");
-        const confirmationModal = document.getElementById("confirmationModal");
-        const successModal = document.getElementById("successModal");
-        const modalDetails = document.getElementById("modalDetails");
-        const serviceCards = document.querySelectorAll("#serviceList > div");
-
-        let selectedService = null;
-        const mockAddresses = [
-          "123 Main Street, Denver, CO 80202",
-          "456 Pearl Street, Boulder, CO 80302",
-          "789 College Avenue, Fort Collins, CO 80524",
-          "321 Tejon Street, Colorado Springs, CO 80903",
-          "654 Havana Street, Aurora, CO 80010",
-          "987 Wadsworth Boulevard, Lakewood, CO 80226",
-          "741 University Avenue, Denver, CO 80210",
-          "852 Broadway Street, Boulder, CO 80304",
-          "963 Mountain Avenue, Fort Collins, CO 80521",
-          "159 Nevada Avenue, Colorado Springs, CO 80903",
-          "753 Colfax Avenue, Denver, CO 80204",
-          "951 Lincoln Street, Brighton, CO 80601",
-          "357 Washington Street, Golden, CO 80401",
-          "846 Market Street, Englewood, CO 80110",
-          "264 Union Boulevard, Lakewood, CO 80228",
-        ];
-
-        const today = new Date();
-        appointmentDate.min = today.toISOString().split("T")[0];
-
-        function generateTimeSlots() {
-          appointmentTime.innerHTML =
-            '<option value="">Choose a time slot</option>';
-          const slots = [];
-          for (let hour = 8; hour < 20; hour++) {
-            for (let minute of ["00", "30"]) {
-              slots.push(`${hour.toString().padStart(2, "0")}:${minute}`);
-            }
-          }
-          slots.forEach((slot) => {
-            const option = document.createElement("option");
-            option.value = slot;
-            option.textContent = slot;
-            appointmentTime.appendChild(option);
-          });
-        }
-        generateTimeSlots();
-
-        // Enhanced service card selection with animation
-        serviceCards.forEach((card) => {
-          card.addEventListener("click", () => {
-            serviceCards.forEach((c) => {
-              c.classList.remove("border-primary", "bg-primary/5");
-              c.querySelector(".service-radio").innerHTML = "";
-            });
-            card.classList.add("border-primary", "bg-primary/5");
-            card.querySelector(".service-radio").innerHTML =
-              '<div class="w-3 h-3 bg-primary rounded-full"></div>';
-            selectedService = {
-              name: card.dataset.service,
-              duration: parseInt(card.dataset.duration),
-              price: parseInt(card.dataset.price),
-            };
-            updateSummary();
-          });
-        });
-
-        function updateSummary() {
-          const nameVal = customerName.value;
-          const phoneVal = customerPhone.value;
-          const emailVal = customerEmail.value;
-          const addressVal = addressInput.value;
-          const dateVal = appointmentDate.value;
-          const timeVal = appointmentTime.value;
-          const allFilled =
-            selectedService &&
-            dateVal &&
-            timeVal &&
-            addressVal &&
-            nameVal &&
-            phoneVal &&
-            emailVal;
-          bookAppointmentBtn.disabled = !allFilled;
-        }
-
-        [
-          customerName,
-          customerPhone,
-          customerEmail,
-          addressInput,
-          appointmentDate,
-          appointmentTime,
-        ].forEach((input) => {
-          input.addEventListener("input", updateSummary);
-          input.addEventListener("change", updateSummary);
-        });
-
-        bookAppointmentBtn.addEventListener("click", () => {
-          if (!selectedService) {
-            modalDetails.innerHTML = `<p>Please select a service first.</p>`;
-            confirmationModal.style.display = "flex";
-            return;
-          }
-          const details = `
-            <p class="mb-2"><strong>Customer:</strong> ${customerName.value}</p>
-            <p class="mb-2"><strong>Phone:</strong> ${customerPhone.value}</p>
-            <p class="mb-2"><strong>Email:</strong> ${customerEmail.value}</p>
-            <p class="mb-2"><strong>Address:</strong> ${addressInput.value}</p>
-            <p class="mb-2"><strong>Date & Time:</strong> ${appointmentDate.value} at ${appointmentTime.value}</p>
-            <p class="mb-2"><strong>Service:</strong> ${selectedService.name}</p>
-            <p class="mb-2"><strong>Duration:</strong> ${selectedService.duration} mins</p>
-            <p class="mb-2"><strong>Total:</strong> ${selectedService.price}</p>
-          `;
-          modalDetails.innerHTML = details;
-          confirmationModal.style.display = "flex";
-        });
-
-        document
-          .getElementById("confirmBooking")
-          .addEventListener("click", () => {
-            confirmationModal.style.display = "none";
-            successModal.style.display = "flex";
-          });
-        document
-          .getElementById("cancelBooking")
-          .addEventListener("click", () => {
-            confirmationModal.style.display = "none";
-          });
-        document
-          .getElementById("closeSuccess")
-          .addEventListener("click", () => {
-            successModal.style.display = "none";
-            serviceCards.forEach((card) => {
-              card.classList.remove("border-primary", "bg-primary/5");
-              card.querySelector(".service-radio").innerHTML = "";
-            });
-            selectedService = null;
-            appointmentDate.value = "";
-            appointmentTime.value = "";
-            addressInput.value = "";
-            customerName.value = "";
-            customerPhone.value = "";
-            customerEmail.value = "";
-            updateSummary();
-          });
-
-        // Smooth scrolling for navigation links
-        const navLinks = document.querySelectorAll('a[href^="#"]');
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({ behavior: "smooth" });
-              // Close mobile menu if open
-              if (
-                !document
-                  .getElementById("mobileMenu")
-                  .classList.contains("hidden")
-              ) {
-                document.getElementById("mobileMenu").classList.add("hidden");
-                document
-                  .getElementById("mobileMenuButton")
-                  .setAttribute("aria-expanded", "false");
-              }
-            }
-          });
-        });
-      });
-
-      // Initialize Slick Carousel for testimonials with enhanced settings
-      $(document).ready(function () {
-        $(".center").slick({
-          centerMode: true,
-          centerPadding: "60px",
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 3000,
-          dots: true,
-          arrows: true,
-          responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 2,
-                centerMode: false,
-              },
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 1,
-                centerMode: true,
-                centerPadding: "40px",
-              },
-            },
-          ],
-        });
-      });
-    </script>
     <!-- AOS Animation JS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      // Initialize AOS with custom settings
-      AOS.init({
-        once: true,
-        offset: 100,
-        duration: 800,
-        easing: "ease-in-out",
-        delay: 100,
-      });
-    </script>
+    <script src="js/animations.js"></script>
+
+    <!-- Main script file -->
+    <script src="js/script.js"></script>
   </body>
 </html>
